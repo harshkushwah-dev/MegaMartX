@@ -10,12 +10,13 @@ const CategoryFeatureArea = () => {
           <div className="row g-4">
             {/* Card 1 */}
             <div className="col-lg-3 col-md-6 col-sm-12 col-12">
-               <div className="single-feature-card"  style={{backgroundImage: `url(${bgImage})`,    height: '400px', borderRadius: '6px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    padding: '40px'
-  }}
->
+              <div className="single-feature-card" style={{
+                backgroundImage: `url(${bgImage})`, height: '400px', borderRadius: '6px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                padding: '40px'
+              }}
+              >
                 <div className="content-area">
                   <a href="/shop" className="rts-btn btn-primary">
                     Weekend Discount
@@ -39,19 +40,20 @@ const CategoryFeatureArea = () => {
 
             {/* Card 2 */}
             <div className="col-lg-3 col-md-6 col-sm-12 col-12">
-             <div className="single-feature-card"  style={{backgroundImage: `url(${bgImage})`,    height: '400px', borderRadius: '6px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    padding: '40px'
-  }}
->
+              <div className="single-feature-card" style={{
+                backgroundImage: `url(https://t4.ftcdn.net/jpg/03/80/72/07/240_F_380720787_Ain6UfNeBiRmq6FSdIqvUHwcpxBlcUNc.jpg)`, height: '400px', borderRadius: '6px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                padding: '40px'
+              }}
+              >
 
 
                 <div className="content-area">
                   <a href="/shop" className="rts-btn btn-primary">
                     Weekend Discount
                   </a>
-                  <h3 className="title">
+                  <h3 className="title"  >
                     Organic Lemon Flavored
                     <span>Banana Chips</span>
                   </h3>
@@ -70,12 +72,14 @@ const CategoryFeatureArea = () => {
 
             {/* Card 3 */}
             <div className="col-lg-3 col-md-6 col-sm-12 col-12">
-               <div className="single-feature-card"  style={{backgroundImage: `url(${bgImage})`,    height: '400px', borderRadius: '6px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    padding: '40px'
-  }}
->
+              <div className="single-feature-card" style={{
+                backgroundImage: `url(https://t4.ftcdn.net/jpg/13/92/41/73/240_F_1392417398_3GDOcTgUKwuMrCyHEoq3xXkV2uX7OI20.jpg)`, height: '400px', borderRadius: '6px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                padding: '40px',
+                backgroundPosition:'right'
+              }}
+              >
                 <div className="content-area">
                   <a href="/shop" className="rts-btn btn-primary">
                     Weekend Discount
@@ -99,12 +103,13 @@ const CategoryFeatureArea = () => {
 
             {/* Card 4 */}
             <div className="col-lg-3 col-md-6 col-sm-12 col-12">
-              <div className="single-feature-card"  style={{backgroundImage: `url(${bgImage})`,    height: '400px', borderRadius: '6px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    padding: '40px'
-  }}
->
+              <div className="single-feature-card" style={{
+                backgroundImage: `url(https://t4.ftcdn.net/jpg/02/27/60/33/240_F_227603351_JWbbWxm4XAQfg4llIw1VhkPVLtOZuvQ3.jpg)`, height: '400px', borderRadius: '6px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                padding: '40px'
+              }}
+              >
                 <div className="content-area">
                   <a href="/shop" className="rts-btn btn-primary">
                     Weekend Discount

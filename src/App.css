@@ -16283,6 +16283,7 @@ li.with-megamenu:hover .rts-megamenu {
   font-size: 16px;
   font-weight: 700;
   color: #fff;
+  margin-right: 3px;
 }
 
 .rts-btn:focus {
@@ -17499,6 +17500,7 @@ li.with-megamenu:hover .rts-megamenu {
   transition: all 0.3s;
   border-radius: 8px 8px 0 0;
   transform: scale(1.01);
+      height: 210px;
 }
 
 .single-blog-area-start.style-two {

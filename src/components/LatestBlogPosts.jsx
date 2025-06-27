@@ -8,7 +8,7 @@ const LatestBlogPosts = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="title-area-between">
-                <h2 className="title-left mb--0">Latest Blog Post Insights</h2>
+                <h2 className="title-left mb--0" style={{padding:'0  15px' , fontSize:'25px'}} >Latest Blog Post Insights</h2>
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ const LatestBlogPosts = () => {
                         href="/blog/ashion-fixation-fueling-your-passion-for-all-things-stylish"
                         className="thumbnail"
                       >
-                        <img src="https://www.aces.edu/wp-content/uploads/2023/02/shutterstock_795233002-scaled.jpg" alt="blog-area" />
+                        <img src="https://t3.ftcdn.net/jpg/13/89/72/38/240_F_1389723821_Teu76ge7cYGZxVsuMawuCOcVW657A43O.jpg" alt="blog-area" />
                       </a>
                       <div className="blog-body">
                         <div className="top-area">
@@ -108,7 +108,7 @@ const LatestBlogPosts = () => {
                         href="/blog/fixation-fueling-your-passion-for-all-things-stylish"
                         className="thumbnail"
                       >
-                        <img src="https://www.aces.edu/wp-content/uploads/2023/02/shutterstock_795233002-scaled.jpg" alt="blog-area" />
+                        <img src="https://t4.ftcdn.net/jpg/13/05/35/63/240_F_1305356352_LkjfmO2F6urPXkK2Q7oWp8wWlHCYyzAy.jpg" alt="blog-area" />
                       </a>
                       <div className="blog-body">
                         <div className="top-area">
@@ -148,7 +148,7 @@ const LatestBlogPosts = () => {
                         href="/blog/fashion-fixation-fueling-your-passion-for-all-things-stylish"
                         className="thumbnail"
                       >
-                        <img src="https://www.aces.edu/wp-content/uploads/2023/02/shutterstock_795233002-scaled.jpg" alt="blog-area" />
+                        <img src="https://t4.ftcdn.net/jpg/08/27/81/11/240_F_827811165_kQCovDxioxQ8DvlEjvSYaL0TdOFzgVH2.jpg" alt="blog-area" />
                       </a>
                       <div className="blog-body">
                         <div className="top-area">

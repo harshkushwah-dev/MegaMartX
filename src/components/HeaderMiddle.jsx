@@ -77,7 +77,7 @@ export const HeaderMiddle = () => {
 
                   <li><a className="text-white fw-semibold text-decoration-none" href="/trackorder">Track Order</a></li>
                   <li className="d-none d-md-block small" style={{paddingLeft:'15px', borderLeft:'1px solid #fff'}} >
-                    <a className="text-white text-decoration-none" href="#">We deliver every day from 7:00 to 22:00</a>
+                    <a style={{fontSize:'15px', fontWeight:'400'}}  className="text-white text-decoration-none" href="#">We deliver every day from 7:00 to 22:00</a>
                   </li>
                 </ul>
               </div>

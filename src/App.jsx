@@ -26,6 +26,7 @@ import { ProductList } from './components/ProductList'
 
 
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -42,14 +43,15 @@ function App() {
               <HeaderMiddle />
              <UncontrolledExample />
               <ProductList />
-              <FeatureArea /> 
-              <FeaturedGrocery />
+               <FeatureArea /> 
+               <FeaturedGrocery />
               <ProductsWithDiscount />
               <WeeklyBestSellingGroceries />
               <CategoryFeatureArea />
               <TopTrendingProducts />
               <LatestBlogPosts />
-              <Footer />
+              <Footer /> 
+             
             </>
           } />
           <Route path="/dashboard" element={
@@ -59,6 +61,8 @@ function App() {
               <AddProduct />
             </DashboardLayout>
           } />
+
+           
 
           {/* <Route path="/dashboard/add-product" element={
              <DashboardLayout>

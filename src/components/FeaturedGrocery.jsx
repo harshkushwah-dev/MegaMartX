@@ -1,42 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import appleImg from '../assets/Screenshot_2025-06-27_232814-removebg-preview.png';
 
 const FeaturedGrocery = () => {
-  const [products, setProducts] = useState([]);
-  const [showAll, setShowAll] = useState(false);
-  const [quantities, setQuantities] = useState({}); // Quantity per product
+  const sampleProducts = [
+    {
+      _id: '1',
+      name: 'Fresh Apples',
+      size: '1kg',
+      salePrice: 80,
+      regularPrice: 120,
+      image: appleImg ,
+    },
+    {
+      _id: '2',
+      name: 'Organic Bananas',
+      size: '1 Dozen',
+      salePrice: 60,
+      regularPrice: 90,
+      image: 'https://t4.ftcdn.net/jpg/11/53/03/73/240_F_1153037323_jta5jxQSrYkYGyjdjVWfxJsg1mwY7Ed8.jpg',
+    },
+    {
+      _id: '3',
+      name: 'Broccoli',
+      size: '500g',
+      salePrice: 40,
+      regularPrice: 55,
+      image: 'https://t4.ftcdn.net/jpg/01/38/59/65/240_F_138596528_dG7J8xrEXROzGkE0PCgKjDWyclYUWfzz.jpg',
+    },
+    {
+      _id: '4',
+      name: 'Milk 2L',
+      size: '2 Litres',
+      salePrice: 75,
+      regularPrice: 100,
+      image: 'https://t4.ftcdn.net/jpg/06/38/12/07/240_F_638120764_nSG4bMkSdONBkAQ8vjfS8tqCHVJgKKd2.jpg',
+    }
+  ];
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
-      .then(res => {
-        setProducts(res.data);
-        // Initialize quantity for each product to 1
-        const initialQuantities = {};
-        res.data.forEach(p => initialQuantities[p._id] = 1);
-        setQuantities(initialQuantities);
-      })
-      .catch(err => console.error('Failed to fetch products:', err));
-  }, []);
+  const [quantities, setQuantities] = useState(
+    sampleProducts.reduce((acc, product) => {
+      acc[product._id] = 1;
+      return acc;
+    }, {})
+  );
 
-  const visibleProducts = showAll ? products : products.slice(0, 4);
-
-  // Handle quantity changes
   const increment = id => {
     setQuantities(prev => ({ ...prev, [id]: prev[id] + 1 }));
   };
 
   const decrement = id => {
-    setQuantities(prev => ({
-      ...prev,
-      [id]: Math.max(1, prev[id] - 1)
-    }));
+    setQuantities(prev => ({ ...prev, [id]: Math.max(1, prev[id] - 1) }));
   };
 
   return (
     <div className="rts-grocery-feature-area rts-section-gapBottom" style={{ padding: '40px 20px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-
-        {/* Header */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -46,45 +64,25 @@ const FeaturedGrocery = () => {
           gap: '10px'
         }}>
           <h1 className="title-left" style={{ fontSize: '24px' }}>Featured Grocery</h1>
-          {!showAll && products.length > 4 && (
-            <button
-              onClick={() => setShowAll(true)}
-              style={{
-                backgroundColor: '#27ae60',
-                color: '#fff',
-                border: 'none',
-                padding: '8px 16px',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                width:'12%',
-              }}
-            >
-              Show More
-            </button>
-          )}
         </div>
 
-        {/* Product Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '20px'
         }}>
-          {visibleProducts.map(product => (
-            <div
-              key={product._id}
-              style={{
-                background: '#fff',
-                borderRadius: '10px',
-                padding: '15px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                position: 'relative',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
+          {sampleProducts.map(product => (
+            <div key={product._id} style={{
+              background: '#fff',
+              borderRadius: '10px',
+              padding: '15px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              position: 'relative',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
                 e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.15)';
@@ -94,7 +92,6 @@ const FeaturedGrocery = () => {
                 e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
               }}
             >
-              {/* Discount Badge */}
               <div style={{
                 position: 'absolute',
                 top: '10px',
@@ -109,7 +106,6 @@ const FeaturedGrocery = () => {
                 {Math.floor(((product.regularPrice - product.salePrice) / product.regularPrice) * 100)}% Off
               </div>
 
-              {/* Product Image */}
               <div style={{
                 width: '100%',
                 height: '200px',
@@ -120,13 +116,12 @@ const FeaturedGrocery = () => {
                 marginBottom: '15px'
               }}>
                 <img
-                  src={`http://localhost:5000/uploads/${product.image}`}
+                  src={product.image}
                   alt={product.name}
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                 />
               </div>
 
-              {/* Product Details */}
               <div style={{ textAlign: 'left' }}>
                 <h4 style={{ fontSize: '16px', margin: '0 0 5px' }}>{product.name}</h4>
                 <span style={{ fontSize: '13px', color: '#555' }}>{product.size}</span>
@@ -136,7 +131,6 @@ const FeaturedGrocery = () => {
                 </div>
               </div>
 
-              {/* Quantity + Cart Button */}
               <div style={{ marginTop: '20px' }}>
                 <div style={{
                   display: 'flex',
@@ -145,7 +139,6 @@ const FeaturedGrocery = () => {
                   gap: '10px',
                   flexWrap: 'wrap'
                 }}>
-                  {/* Quantity Controls */}
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -160,7 +153,7 @@ const FeaturedGrocery = () => {
                       cursor: 'pointer',
                       fontSize: '16px'
                     }}>−</button>
-                    <input type="text" value={quantities[product._id] || 1} readOnly style={{
+                    <input type="text" value={quantities[product._id]} readOnly style={{
                       width: '40px',
                       textAlign: 'center',
                       border: 'none',
@@ -176,23 +169,21 @@ const FeaturedGrocery = () => {
                     }}>+</button>
                   </div>
 
-                  {/* Add to Cart */}
-                  <button
-                    style={{
-                      flex: 1,
-                      backgroundColor: '#27ae60',
-                      color: '#fff',
-                      border: 'none',
-                      padding: '10px',
-                      borderRadius: '5px',
-                      cursor: 'pointer',
-                      fontSize: '14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      transition: 'background-color 0.3s ease, transform 0.3s ease'
-                    }}
+                  <button style={{
+                    flex: 1,
+                    backgroundColor: '#27ae60',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '10px',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    transition: 'background-color 0.3s ease, transform 0.3s ease'
+                  }}
                     onMouseEnter={e => {
                       e.currentTarget.style.backgroundColor = '#1f8a4c';
                       e.currentTarget.style.transform = 'scale(1.03)';
@@ -209,7 +200,6 @@ const FeaturedGrocery = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );

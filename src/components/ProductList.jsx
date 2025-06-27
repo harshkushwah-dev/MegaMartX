@@ -1,41 +1,91 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import fruitImage from '../assets/pexels-asphotograpy-235294-removebg-preview.png';
+import vegetableImage from '../assets/Screenshot_2025-06-27_202218-removebg-preview.png';
+import dairyImage from '../assets/Screenshot_2025-06-27_202520-removebg-preview.png';
+import bakeryImage from '../assets/Screenshot_2025-06-27_230157-removebg-preview.png';
+import meatImage from '../assets/Screenshot_2025-06-27_231107-removebg-preview.png';
+import snacksImage from '../assets/Screenshot_2025-06-27_231532-removebg-previe.png';
+import beveragesImage from '../assets/Screenshot_2025-06-27_232050-removebg-preview.png';
+import frozenImage from '../assets/froc-removebg-preview (1).png';
 
 export const ProductList = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
-      .then(res => setProducts(res.data))
-      .catch(err => console.error('Failed to fetch products:', err));
-  }, []);
+  const products = [
+    { _id: '1', category: 'Fruits', image: fruitImage },
+    { _id: '2', category: 'Vegetables', image: vegetableImage },
+    { _id: '3', category: 'Dairy', image: dairyImage },
+    { _id: '4', category: 'Bakery', image: bakeryImage },
+    { _id: '5', category: 'Meat & Poultry', image: meatImage },
+    { _id: '6', category: 'Snacks', image: snacksImage },
+    { _id: '7', category: 'Beverages', image: beveragesImage },
+    { _id: '8', category: 'Frozen Foods', image: frozenImage },
+  ];
 
   return (
-    <div className="product-list" style={{ padding: '40px 20px', backgroundColor: '#f9f9f9' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '30px', fontSize: '28px', fontWeight: '600' }}>Product Categories</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
-          {products.map(product => (
-            <div key={product._id} style={{
-              border: '1px solid #e0e0e0',
-              padding: '20px',
-              borderRadius: '10px',
-              backgroundColor: '#ffffff',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
-              textAlign: 'center',
-              transition: 'transform 0.3s ease',
-            }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-6px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+    <div style={{ padding: '40px 20px', backgroundColor: '#f9f9f9' }}>
+      <div style={{ maxWidth: '100vw', margin: '0 auto' }}>
+        <h2
+          style={{
+            textAlign: 'center',
+            marginBottom: '30px',
+            fontSize: '28px',
+            fontWeight: '600',
+          }}
+        >
+          Product Categories
+        </h2>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: '16px',
+          }}
+        >
+          {products.map((product) => (
+            <div
+              key={product._id}
+              style={{
+                border: '1px solid #e0e0e0',
+                padding: '16px',
+                borderRadius: '8px',
+                backgroundColor: '#ffffff',
+                boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
+                textAlign: 'center',
+                transition: 'transform 0.3s ease',
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = 'translateY(-5px)')
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = 'translateY(0)')
+              }
             >
-              <div style={{ height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  height: '120px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 <img
-                  src={`http://localhost:5000/uploads/${product.image}`}
-                  alt={product.name}
-                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                  src={product.image}
+                  alt={product.category}
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
+                  }}
                 />
               </div>
-              <h4 style={{ marginTop: '15px', fontSize: '16px', color: '#333' }}>{product.category}</h4>
+              <h4
+                style={{
+                  marginTop: '12px',
+                  fontSize: '15px',
+                  color: '#333',
+                }}
+              >
+                {product.category}
+              </h4>
             </div>
           ))}
         </div>
