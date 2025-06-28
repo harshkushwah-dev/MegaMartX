@@ -1,5 +1,5 @@
 #root {
-     width: 1521px;
+     width: 100vw;
 }
 
 .logo {
@@ -20576,7 +20576,7 @@ body.modal-open {
 }
 
 .single-filter-box .filterbox-body {
-  padding: 30px;
+  padding: 15px;
 }
 
 @media only screen and (max-width: 575px) {
@@ -27558,7 +27558,6 @@ header.header-three .sub-dropdown .submenu.third-lvl.base {
   }
 
   body {
-    -webkit-print-color-adjust: exact;
     font-family: Arial, sans-serif;
   }
 

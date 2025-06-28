@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { Menu } from 'lucide-react';
+
+
 
 export const HeaderMiddle = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -76,8 +78,8 @@ export const HeaderMiddle = () => {
                   </li>
 
                   <li><a className="text-white fw-semibold text-decoration-none" href="/trackorder">Track Order</a></li>
-                  <li className="d-none d-md-block small" style={{paddingLeft:'15px', borderLeft:'1px solid #fff'}} >
-                    <a style={{fontSize:'15px', fontWeight:'400'}}  className="text-white text-decoration-none" href="#">We deliver every day from 7:00 to 22:00</a>
+                  <li className="d-none d-md-block small" style={{ paddingLeft: '15px', borderLeft: '1px solid #fff' }} >
+                    <a style={{ fontSize: '15px', fontWeight: '400' }} className="text-white text-decoration-none" href="#">We deliver every day from 7:00 to 22:00</a>
                   </li>
                 </ul>
               </div>
@@ -90,20 +92,25 @@ export const HeaderMiddle = () => {
                       <button className="btn btn-light dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <Menu className="me-1" size={18} />
                       </button>
+
+
                       <ul className="dropdown-menu dropdown-menu-end">
-                        <li><a className="dropdown-item text-black" href="#">About</a></li>
-                        <li><a className="dropdown-item text-black" href="#">Shop</a></li>
-                        <li><a className="dropdown-item text-black" href="#">Vendors</a></li>
-                        <li><a className="dropdown-item text-black" href="#">Pages</a></li>
-                        <li><a className="dropdown-item text-black" href="/blog">Blog</a></li>
-                        <li><a className="dropdown-item text-black" href="/contact">Contact</a></li>
+                        <li><Link className="dropdown-item text-black" to="/">Home</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/about">About</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/shop">Shop</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/vendor">Vendors</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/pages">Pages</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/blogmain">Blog</Link></li>
+                        <li><Link className="dropdown-item text-black" to="/contact">Contact</Link></li>
                       </ul>
+
                     </div>
                   </div>
                 ) : (
                   <nav>
                     <ul className="parent-nav d-flex flex-wrap justify-content-center gap-5 list-unstyled mb-0">
-                      <li><a className="nav-link text-white fw-semibold" href="#">About</a></li>
+                      <li><Link style={{ color: '#fff' }} to="/">Home</Link></li>
+                      <li><Link to="/about">About</Link></li>
                       <li className="dropdown hover-dropdown">
                         <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Shop</a>
                         <ul className="dropdown-menu">
@@ -116,12 +123,13 @@ export const HeaderMiddle = () => {
                       <li className="dropdown hover-dropdown">
                         <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Vendors</a>
                         <ul className="dropdown-menu">
-                          <li><a className="dropdown-item text-black" href="/vendor-list">Vendor List</a></li>
-                          <li><a className="dropdown-item text-black" href="/vendor-grid">Vendor Grid</a></li>
-                          <li><a className="dropdown-item text-black" href="/vendor-details">Vendor Details</a></li>
+                          <li><Link className="dropdown-item text-black" to="/vendor">Vendor List</Link></li>
+                          <li><Link className="dropdown-item text-black" to="/vendorDetails">Vendor Details</Link></li>
+
+
                         </ul>
                       </li>
-                      <li className="dropdown hover-dropdown">
+                      {/* <li className="dropdown hover-dropdown">
                         <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Pages</a>
                         <ul className="dropdown-menu">
                           <li><a className="dropdown-item text-black" href="/dashboard">Dashboard</a></li>
@@ -137,9 +145,9 @@ export const HeaderMiddle = () => {
                           <li><a className="dropdown-item text-black" href="/terms-condition">Terms & Condition</a></li>
                           <li><a className="dropdown-item text-black" href="/404">Error</a></li>
                         </ul>
-                      </li>
-                      <li><a className="nav-link text-white fw-semibold" href="/blog">Blog</a></li>
-                      <li><a className="nav-link text-white fw-semibold" href="/contact">Contact</a></li>
+                      </li> */}
+                      <li><Link  to="/blogmain">Blog</Link></li>
+                      <li><Link  to="/contact">Contact</Link></li>
                     </ul>
                   </nav>
                 )}

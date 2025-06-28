@@ -21,6 +21,13 @@ import Header from './components/dashboard/Header'
 import Sidebar from './components/dashboard/Sidebar'
 import AddProduct from './components/dashboard/AddProduct'
 import { ProductList } from './components/ProductList'
+import AboutPage from './components/AboutPage'
+import VendorList from './components/VendorList'
+import VendorDetails from './components/VendorDetails'
+import BlogMain from './components/BlogMain'
+import { Contact } from 'lucide-react'
+import ContactMain from './components/ContactMain'
+
 
 
 
@@ -41,19 +48,72 @@ function App() {
               <HeaderTop />
               <HeaderSearch />
               <HeaderMiddle />
-             <UncontrolledExample />
+              <UncontrolledExample />
               <ProductList />
-               <FeatureArea /> 
-               <FeaturedGrocery />
+              <FeatureArea />
+              <FeaturedGrocery />
               <ProductsWithDiscount />
               <WeeklyBestSellingGroceries />
               <CategoryFeatureArea />
               <TopTrendingProducts />
               <LatestBlogPosts />
-              <Footer /> 
-             
+              <Footer />
+
+
             </>
           } />
+
+          {/* About page route */}
+          <Route path="/about" element={
+            <>
+              <HeaderTop />
+              <HeaderSearch />
+              <HeaderMiddle />
+              <AboutPage />
+              <Footer />
+            </>
+          } />
+          {/* Vendor List page route */}
+          <Route path="/vendor" element={
+            <>
+              <HeaderTop />
+              <HeaderSearch />
+              <HeaderMiddle />
+              <VendorList />
+              <Footer />
+            </>
+          } />
+          {/* Vendor List page route */}
+          <Route path="/vendorDetails" element={
+            <>
+              <HeaderTop />
+              <HeaderSearch />
+              <HeaderMiddle />
+              <VendorDetails />
+              <Footer />
+            </>
+          } />
+
+          <Route path="/blogmain" element={
+            <>
+              <HeaderTop />
+              <HeaderSearch />
+              <HeaderMiddle />
+              <BlogMain />
+              <Footer />
+            </>
+          } />
+          <Route path="/contact" element={
+            <>
+              <HeaderTop />
+              <HeaderSearch />
+              <HeaderMiddle />
+              <ContactMain />
+             
+              <Footer />
+            </>
+          } />
+
           <Route path="/dashboard" element={
             <DashboardLayout>
               <Header />
@@ -62,7 +122,7 @@ function App() {
             </DashboardLayout>
           } />
 
-           
+
 
           {/* <Route path="/dashboard/add-product" element={
              <DashboardLayout>

@@ -44,7 +44,7 @@ export const HeaderSearch = () => {
           </a>
 
           {/* Search Box */}
-          <div className="category-search-wrapper flex-grow-1" style={{ maxWidth: '600px', flexBasis: '50%' }}>
+          <div className="category-search-wrapper flex-grow-1" style={{ maxWidth: '750px', flexBasis: '50%' }}>
             <form className="search-header d-flex align-items-center" autoComplete="off" style={{ border: '2px solid #28a745', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 0 5px rgba(0,0,0,0.1)' }}>
               <input
                 type="text"

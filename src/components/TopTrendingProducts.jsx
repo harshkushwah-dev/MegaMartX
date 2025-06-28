@@ -143,7 +143,7 @@ const TopTrendingProducts = () => {
                   onClick={() => handleAddToCart(product)}
                   style={{fontSize:'20px', borderRadius:'10px'}}
                 >
-                  🛒 Add to Cart
+                  <i className="fa fa-shopping-cart"></i> Add to Cart
                 </button>
               </div>
             </div>

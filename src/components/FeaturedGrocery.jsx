@@ -9,7 +9,7 @@ const FeaturedGrocery = () => {
       size: '1kg',
       salePrice: 80,
       regularPrice: 120,
-      image: appleImg ,
+      image: appleImg,
     },
     {
       _id: '2',
@@ -64,6 +64,7 @@ const FeaturedGrocery = () => {
           gap: '10px'
         }}>
           <h1 className="title-left" style={{ fontSize: '24px' }}>Featured Grocery</h1>
+          <button style={{fontSize:'14px', backgroundColor:'#27ae60', color:'#fff', maxWidth:'10%', borderRadius:'10px',}} >More</button>
         </div>
 
         <div style={{

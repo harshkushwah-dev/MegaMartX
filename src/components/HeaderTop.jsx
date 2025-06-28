@@ -42,7 +42,7 @@ const HeaderTop = () => {
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="bwtween-area-header-top">
-                            <div className="discount-area" style={{ width: '50%' }}>
+                            <div className="discount-area" style={{ width: '60%' }}>
                                 <marquee
                                     className="disc"
                                     style={{ color: 'white', whiteSpace: 'nowrap', fontSize: '15px' }}
