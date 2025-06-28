@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const HeaderTop = () => {
-    const targetDate = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+    const targetDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const calculateTimeLeft = () => {
         const now = new Date();
@@ -25,7 +26,6 @@ const HeaderTop = () => {
         const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
-
         return () => clearInterval(timer);
     }, []);
 
@@ -37,48 +37,114 @@ const HeaderTop = () => {
     ];
 
     return (
-        <div className="header-top-area">
-            <div className="">
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="bwtween-area-header-top">
-                            <div className="discount-area" style={{ width: '60%' }}>
-                                <marquee
-                                    className="disc"
-                                    style={{ color: 'white', whiteSpace: 'nowrap', fontSize: '15px' }}
-                                    scrollamount="3"
-                                    behavior="scroll"
-                                    direction="left"
-                                    loop="infinite"
+        <div
+            className="header-top-area"
+            style={{
+                backgroundColor: '#28a745',
+                color: '#fff',
+                padding: '10px 15px',
+                fontSize: '14px',
+            }}
+        >
+            <div className="container-fluid">
+                <div className="d-flex justify-content-between align-items-center flex-wrap">
+                    {/* Left Area: Marquee + Countdown */}
+                    <div
+                        className="d-flex align-items-center"
+                        style={{ flex: 1, minWidth: '250px' }}
+                    >
+                        <div className="d-none d-md-block" style={{ width: '60%' }}>
+                            <marquee scrollamount="3">
+                                FREE delivery & 40% Discount for next 3 orders! | Limited time offer! | Extra 10% off on 3rd order!
+                            </marquee>
+                        </div>
+                        <div className="d-none d-md-flex ms-3">
+                            {timeValues.map((val, i) => (
+                                <div
+                                    key={i}
+                                    style={{
+                                        width: '28px',
+                                        textAlign: 'center',
+                                        background: '#fff',
+                                        color: '#28a745',
+                                        margin: '0 2px',
+                                        padding: '2px 4px',
+                                        borderRadius: '4px',
+                                        fontWeight: 'bold',
+                                        fontSize: '12px',
+                                        marginRight:'10px'
+                                    }}
                                 >
-                                    FREE delivery & 40% Discount for next 3 orders! &nbsp;|&nbsp; Hurry up! Limited time offer on your 2nd order. &nbsp;|&nbsp; Grab an extra 10% off on your 3rd purchase!&nbsp;&nbsp;
-                                </marquee>
-                                <div className="countdown">
-                                    <div className="countDown">
-                                        {timeValues.map((value, index) => (
-                                            <div className="container" key={index}>
-                                                <div className="a">
-                                                    <div style={{ display: 'inline-block', width: '30px', textAlign: 'center' }}>
-                                                        {value.toString().padStart(2, '0')}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {val.toString().padStart(2, '0')}
                                 </div>
-                            </div>
-                            <div className="contact-number-area">
-                                <p>
-                                    Need help? Call Us: <a href="tel:+4733378901">+258 3268 21485</a>
-                                </p>
-                            </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Area: Contact + Mobile Toggle */}
+                    <div
+                        className="d-flex align-items-center justify-content-end"
+                        style={{ gap: '15px' }}
+                    >
+                        <p className="m-0 d-none d-md-block"  style={{ color: '#fff',}}>
+                            Need help? Call Us:{' '}
+                            <a href="tel:+4733378901" style={{ color: '#fff', textDecoration: 'underline' }}>
+                                +258 3268 21485
+                            </a>
+                        </p>
+
+                        {/* Mobile Toggle Button */}
+                        <div className="d-md-none">
+                            <button
+                                onClick={() => setMenuOpen(!menuOpen)}
+                                style={{
+                                    background: 'none',
+                                    border: '1px solid #fff',
+                                    color: '#fff',
+                                    borderRadius: '4px',
+                                    padding: '4px 10px',
+                                    fontSize: '16px',
+                                }}
+                            >
+                                ☰
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Dropdown Menu */}
+                {menuOpen && (
+                    <div
+                        className="mobile-nav mt-3"
+                        style={{
+                            backgroundColor: '#fff',
+                            color: '#333',
+                            borderRadius: '6px',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                            padding: '10px',
+                        }}
+                    >
+                        {['Home', 'Shop', 'About', 'Contact'].map((item, i) => (
+                            <a
+                                key={i}
+                                href={`/${item.toLowerCase()}`}
+                                style={{
+                                    display: 'block',
+                                    padding: '8px 12px',
+                                    textDecoration: 'none',
+                                    color: '#28a745',
+                                    fontWeight: '500',
+                                    borderBottom: i !== 3 ? '1px solid #eee' : 'none',
+                                }}
+                            >
+                                {item}
+                            </a>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
 export default HeaderTop;
-    

@@ -20112,6 +20112,17 @@ body.modal-open {
   height: 5px;
   border-radius: 5px;
 }
+.feedback-card {
+  transition: all 0.4s ease;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.feedback-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
 
 .bottom-content-deals .single-progress-area-incard .progress .progress-bar {
   background: #dc2626;
@@ -20121,7 +20132,7 @@ body.modal-open {
   padding: 60px 100px;
   border-radius: 6px;
   border: 1px solid #e2e2e2;
-  margin-top: -80px;
+  margin-top: -100px;
   background: #fff;
   box-shadow: 0 20px 39px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -23392,10 +23403,10 @@ body.modal-open {
 }
 
 .vendor-details-banner--area {
-  padding: 30px;
+  padding: 15px;
   border-radius: 6px;
   border: 1px solid #e2e2e2;
-  margin-left: -30px;
+ 
 }
 
 @media only screen and (max-width: 1199px) {
