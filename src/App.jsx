@@ -134,6 +134,11 @@ function App() {
 
 
 
+{/* git add .
+git commit -m "Updated VendorDetails component and styles"
+git push origin main */}
+
+
 
 
 

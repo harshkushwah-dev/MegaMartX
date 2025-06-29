@@ -1,94 +1,50 @@
 import React, { useState } from 'react';
+import sampleProducts from '../data/sampleProducts'; // Ensure this is a default export
 
 const TopTrendingProducts = () => {
-  const products = [
-    {
-      _id: '1',
-      name: 'Fresh Apples',
-      size: '1kg',
-      salePrice: 80,
-      regularPrice: 120,
-      image: 'https://t3.ftcdn.net/jpg/02/36/88/12/240_F_236881295_odo9H1vtTZUvewumPdeRE4tHUtVa2UJg.jpg',
-      category: 'Trending Fruits',
-    },
-    {
-      _id: '2',
-      name: 'Organic Bananas',
-      size: '1 Dozen',
-      salePrice: 60,
-      regularPrice: 90,
-      image: 'https://t3.ftcdn.net/jpg/02/15/78/44/240_F_215784483_BPQrfgtWwgTEQh6G0U3NocKwoCyuJ8BL.jpg',
-      category: 'Health Picks',
-    },
-    {
-      _id: '3',
-      name: 'Green Grapes',
-      size: '500g',
-      salePrice: 70,
-      regularPrice: 100,
-      image: 'https://t4.ftcdn.net/jpg/02/75/25/69/240_F_275256966_ycN3olfZetq8rbSxUh5ER8aRxW6NLBNA.jpg',
-      category: 'Fresh Deals',
-    },
-    {
-      _id: '4',
-      name: 'Tomatoes',
-      size: '1kg',
-      salePrice: 45,
-      regularPrice: 65,
-      image: 'https://t3.ftcdn.net/jpg/01/77/78/46/240_F_177784681_V5aIQ1TVxHLl9qszqHfy80fk7k2R8WFU.jpg',
-      category: 'Kitchen ',
-    },
-    {
-      _id: '5',
-      name: 'Spinach',
-      size: '1 bunch',
-      salePrice: 30,
-      regularPrice: 50,
-      image: 'https://t3.ftcdn.net/jpg/12/40/08/56/240_F_1240085635_9WuuT4AemcqmzlRFAvcBQ3OoUG7C19nR.jpg',
-      category: 'Green Boost',
-    },
-    {
-      _id: '6',
-      name: 'Milk 1L',
-      size: '1 Litre',
-      salePrice: 50,
-      regularPrice: 70,
-      image: 'https://t3.ftcdn.net/jpg/02/81/00/18/240_F_281001895_usd6SIfy6zjBCf7hkVtFGKpG4B3zbwWM.jpg',
-      category: 'Daily Dairy',
-    },
-    {
-      _id: '7',
-      name: 'Brown Bread',
-      size: '400g',
-      salePrice: 35,
-      regularPrice: 55,
-      image: 'https://t4.ftcdn.net/jpg/11/40/32/87/240_F_1140328789_UPsgYurUxhxzrsLuRFo9c9Ft1YOoAlVR.jpg',
-      category: 'Bestselling Bakery',
-    },
-    {
-      _id: '8',
-      name: 'Orange Juice',
-      size: '1L',
-      salePrice: 65,
-      regularPrice: 90,
-      image: 'https://t4.ftcdn.net/jpg/04/62/69/31/240_F_462693107_PflUFhf6XUgDd1N2PSxNEOe362XplEw4.jpg',
-      category: 'Top Refreshments',
-    },
-  ];
+  // Show only one product per category
+  const uniqueCategoryProducts = Object.values(
+    sampleProducts.reduce((acc, product) => {
+      if (!acc[product.category]) acc[product.category] = product;
+      return acc;
+    }, {})
+  );
 
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
   const [cart, setCart] = useState([]);
 
-  const categories = ['All', ...new Set(products.map((p) => p.category))];
+  const categories = [...new Set(uniqueCategoryProducts.map((p) => p.category))];
 
-  const filteredProducts =
-    activeCategory === 'All'
-      ? products
-      : products.filter((p) => p.category === activeCategory);
+  const handleCheckboxChange = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  const handlePriceChange = (e, type) => {
+    const value = e.target.value;
+    if (type === 'min') setMinPrice(value);
+    else setMaxPrice(value);
+  };
+
+  const filteredProducts = uniqueCategoryProducts.filter((p) => {
+    const categoryMatch =
+      selectedCategories.length === 0 || selectedCategories.includes(p.category);
+    const priceMatch =
+      (!minPrice || p.salePrice >= Number(minPrice)) &&
+      (!maxPrice || p.salePrice <= Number(maxPrice));
+    return categoryMatch && priceMatch;
+  });
+
+  // Limit display to 2 rows (3 items per row = 6 max)
+  const itemsToShow = filteredProducts.slice(0, 6);
 
   const handleAddToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
-    console.log(`Added to cart: ${product.name}`);
     alert(`"${product.name}" added to cart!`);
   };
 
@@ -98,62 +54,97 @@ const TopTrendingProducts = () => {
         Top Trending Products
       </h2>
 
-      {/* Category Tabs */}
-      <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        {categories.map((category) => (
-          <button
-            key={category}
-            style={{ width: 'auto', fontSize: '14px' }}
-            className={`btn btn-sm px-3 py-2 rounded-pill ${
-              activeCategory === category
-                ? 'btn-success text-white'
-                : 'btn-outline-secondary'
-            }`}
-            onClick={() => setActiveCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      {/* Product Grid */}
-      <div className="row g-4">
-        {filteredProducts.map((product) => (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={product._id}>
-            <div className="card h-100 shadow-sm d-flex flex-column">
-              <img
-                src={product.image}
-                className="card-img-top"
-                alt={product.name}
-                style={{ height: '180px', objectFit: 'cover', borderRadius:'10px' }}
-              />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title fw-semibold" style={{fontSize:'20px'}} >{product.name}</h5>
-                <p className="card-text text-muted mb-2">{product.size}</p>
-                <div className="d-flex align-items-center mb-3" style={{fontSize:'20px'}} >
-                  <span className="text-success fw-bold me-2">
-                    ₹{product.salePrice}
-                  </span>
-                  <span className="text-muted text-decoration-line-through"  >
-                    ₹{product.regularPrice}
-                  </span>
-                </div>
-                <button
-                  className="btn btn-sm btn-outline-success mt-auto"
-                  onClick={() => handleAddToCart(product)}
-                  style={{fontSize:'16px', borderRadius:'10px'}}
-                >
-                  <i className="fa fa-shopping-cart"></i> Add to Cart
-                </button>
+      <div className="row">
+        {/* Left Sidebar Filter */}
+        <div className="col-md-3 mb-4">
+          <div className="border p-3 rounded">
+            <h5 className="mb-3">Filter by Category</h5>
+            {categories.map((category) => (
+              <div className="form-check mb-2" key={category}>
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id={category}
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => handleCheckboxChange(category)}
+                />
+                <label className="form-check-label" htmlFor={category}>
+                  {category}
+                </label>
               </div>
+            ))}
+
+            <hr />
+
+            <h5 className="mb-3">Filter by Price (₹)</h5>
+            <div className="mb-2">
+              <label className="form-label">Min Price</label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="e.g. 30"
+                value={minPrice}
+                onChange={(e) => handlePriceChange(e, 'min')}
+              />
+            </div>
+            <div className="mb-2">
+              <label className="form-label">Max Price</label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="e.g. 90"
+                value={maxPrice}
+                onChange={(e) => handlePriceChange(e, 'max')}
+              />
             </div>
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* Optional: Show cart summary */}
-      <div className="mt-5">
-        <h5>🛒 Cart Items: {cart.length}</h5>
+        {/* Product Grid */}
+        <div className="col-md-9">
+          <div className="row g-4">
+            {itemsToShow.map((product) => (
+              <div className="col-12 col-sm-6 col-md-4" key={product._id}>
+                <div
+                  className="card h-100 border-0 shadow-sm d-flex flex-column rounded-4 overflow-hidden"
+                  style={{ transition: 'transform 0.3s', background: '#fff' }}
+                >
+                  <div className="position-relative overflow-hidden" style={{ height: '200px' }}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="card-body d-flex flex-column p-3">
+                    <h5 className="fw-semibold mb-1" style={{ fontSize: '18px', color: '#333' }}>
+                      {product.name}
+                    </h5>
+                    <p className="text-muted mb-2">{product.size}</p>
+                    <div className="d-flex align-items-center mb-3" style={{ fontSize: '18px' }}>
+                      <span className="text-success fw-bold me-2">₹{product.salePrice}</span>
+                      <span className="text-muted text-decoration-line-through">₹{product.regularPrice}</span>
+                    </div>
+                    <button
+                      className="btn btn-success mt-auto px-3 py-2 rounded-pill"
+                      onClick={() => handleAddToCart(product)}
+                      style={{ fontSize: '15px', backgroundColor:'#28a745' }}
+                    >
+                      <i className="fa fa-shopping-cart me-1"></i> Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            ))}
+          </div>
+
+          {/* Cart Summary */}
+          {/* <div className="mt-5">
+            <h5>🛒 Cart Items: {cart.length}</h5>
+          </div> */}
+        </div>
       </div>
     </div>
   );

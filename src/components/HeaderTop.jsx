@@ -80,7 +80,7 @@ const HeaderTop = () => {
           </div>
 
           {/* Right Section */}
-          <div className="d-flex align-items-center justify-content-between" style={{ gap: '15px' }}>
+          <div className="d-flex align-items-center justify-content-between" style={{ gap: '65px' }}>
             <p className="m-0" style={{ color: '#fff' }}>
               Call Us:{' '}
               <a href="tel:+4733378901" style={{ color: '#fff', textDecoration: 'underline' }}>

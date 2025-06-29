@@ -1,40 +1,23 @@
 import React from 'react';
+import sampleProducts from '../data/sampleProducts';
 
 const ProductsWithDiscount = () => {
-  const products = [
-    {
-      _id: '1',
-      name: 'Fresh Apples',
-      size: '1kg',
-      salePrice: 80,
-      regularPrice: 120,
-      image: 'https://t3.ftcdn.net/jpg/02/02/67/00/240_F_202670033_L2na30dIVjD5o2UlvF9DT0wlzdFIti04.jpg',
-    },
-    {
-      _id: '2',
-      name: 'Organic Bananas',
-      size: '1 Dozen',
-      salePrice: 60,
-      regularPrice: 90,
-      image: 'https://t4.ftcdn.net/jpg/11/53/03/73/240_F_1153037323_jta5jxQSrYkYGyjdjVWfxJsg1mwY7Ed8.jpg',
-    },
-    {
-      _id: '3',
-      name: 'Broccoli',
-      size: '500g',
-      salePrice: 40,
-      regularPrice: 55,
-      image: 'https://t4.ftcdn.net/jpg/01/38/59/65/240_F_138596528_dG7J8xrEXROzGkE0PCgKjDWyclYUWfzz.jpg',
-    },
-    {
-      _id: '4',
-      name: 'Milk 2L',
-      size: '2 Litres',
-      salePrice: 75,
-      regularPrice: 100,
-      image: 'https://t4.ftcdn.net/jpg/06/38/12/07/240_F_638120764_nSG4bMkSdONBkAQ8vjfS8tqCHVJgKKd2.jpg',
-    },
-  ];
+  // Step 1: Filter discounted products
+  const discountedProducts = sampleProducts.filter(
+    (product) =>
+      product.regularPrice &&
+      product.salePrice &&
+      product.salePrice < product.regularPrice
+  );
+
+  // Step 2: Sort by highest discount
+  const top4Discounted = discountedProducts
+    .sort(
+      (a, b) =>
+        ((b.regularPrice - b.salePrice) / b.regularPrice) * 100 -
+        ((a.regularPrice - a.salePrice) / a.regularPrice) * 100
+    )
+    .slice(0, 4); // Step 3: Take only top 4
 
   return (
     <div className="container py-5">
@@ -57,8 +40,10 @@ const ProductsWithDiscount = () => {
                   backgroundPosition: 'center',
                 }}
               >
-                <div className="position-absolute w-100 h-100 d-flex flex-column justify-content-end p-4 text-white"
-                  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+                <div
+                  className="position-absolute w-100 h-100 d-flex flex-column justify-content-end p-4 text-white"
+                  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+                >
                   <h5 className="mb-1">Alpro Organic Flavored Juice</h5>
                   <h4 className="fw-bold">Only ₹15.00</h4>
                 </div>
@@ -76,8 +61,10 @@ const ProductsWithDiscount = () => {
                   backgroundPosition: 'center',
                 }}
               >
-                <div className="position-absolute w-100 h-100 d-flex flex-column justify-content-end p-4 text-white"
-                  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+                <div
+                  className="position-absolute w-100 h-100 d-flex flex-column justify-content-end p-4 text-white"
+                  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+                >
                   <h5 className="mb-1">Fresh Juice Organic Special</h5>
                   <h4 className="fw-bold">Save 20%</h4>
                 </div>
@@ -86,11 +73,15 @@ const ProductsWithDiscount = () => {
           </div>
         </div>
 
-        {/* Products */}
+        {/* Top 4 Discounted Products */}
         <div className="col-lg-6">
           <div className="row g-3">
-            {products.map((product) => {
-              const discount = Math.floor(((product.regularPrice - product.salePrice) / product.regularPrice) * 100);
+            {top4Discounted.map((product) => {
+              const discount = Math.floor(
+                ((product.regularPrice - product.salePrice) /
+                  product.regularPrice) *
+                  100
+              );
               return (
                 <div className="col-12 col-sm-6" key={product._id}>
                   <div
@@ -101,40 +92,66 @@ const ProductsWithDiscount = () => {
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-5px)';
-                      e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.15)';
+                      e.currentTarget.style.boxShadow =
+                        '0 10px 20px rgba(0,0,0,0.15)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                      e.currentTarget.style.boxShadow =
+                        '0 2px 8px rgba(0,0,0,0.1)';
                     }}
                   >
                     {/* Discount Badge */}
-                    <div className="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded"
-                      style={{ fontSize: '12px', transform: 'translate(10px, 10px)' }}>
+                    <div
+                      className="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded"
+                      style={{
+                        fontSize: '12px',
+                        transform: 'translate(10px, 10px)',
+                      }}
+                    >
                       {discount}% Off
                     </div>
 
                     {/* Image */}
-                    <div className="text-center mb-3" style={{ height: '110px' }}>
+                    <div
+                      className="text-center mb-3"
+                      style={{ height: '110px' }}
+                    >
                       <img
                         src={product.image}
                         alt={product.name}
-                        style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                        style={{
+                          maxHeight: '100%',
+                          maxWidth: '100%',
+                          objectFit: 'contain',
+                        }}
                       />
                     </div>
 
                     {/* Info */}
                     <div>
                       <h5 className="fw-bold mb-1">{product.name}</h5>
-                      <p className="text-muted mb-1" style={{ fontSize: '15px' }}>{product.size}</p>
+                      <p
+                        className="text-muted mb-1"
+                        style={{ fontSize: '15px' }}
+                      >
+                        {product.size}
+                      </p>
                       <div className="mb-3 d-flex align-items-center gap-2">
-                        <span className="text-success fw-bold fs-5">₹{product.salePrice}</span>
-                        <span className="text-muted text-decoration-line-through fs-6">₹{product.regularPrice}</span>
+                        <span className="text-success fw-bold fs-5">
+                          ₹{product.salePrice}
+                        </span>
+                        <span className="text-muted text-decoration-line-through fs-6">
+                          ₹{product.regularPrice}
+                        </span>
                       </div>
                     </div>
 
                     {/* Button */}
-                    <button className="btn btn-success w-100 mt-auto" style={{ fontSize: '15px' }}>
+                    <button
+                      className="btn btn-success w-100 mt-auto"
+                      style={{ fontSize: '15px', backgroundColor:'#28a745' }}
+                    >
                       <i className="fa fa-shopping-cart me-2"></i> Add to Cart
                     </button>
                   </div>
