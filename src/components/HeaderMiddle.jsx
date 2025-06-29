@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
-
+import { Menu } from 'lucide-react'; // make sure this is installed or replace with an icon you use
 
 export const HeaderMiddle = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -17,146 +15,133 @@ export const HeaderMiddle = () => {
   }, []);
 
   return (
-    <div
-      className="header-mid-one-wrapper  px-2 border-bottom shadow-sm sticky-top"
-      style={{ backgroundColor: '#28a745', zIndex: 1030 }}
-    >
-      <style>{`
+    <>
+      <div
+        className="header-mid-one-wrapper px-3 py-2 border-bottom shadow-sm sticky-top hide-below-992"
+        style={{ backgroundColor: '#28a745', zIndex: 1030 }}
+      >
+
+        <style>{`
         .hover-dropdown:hover > .dropdown-menu {
           display: block;
           margin-top: 0;
         }
 
-        menu, ol, ul {
-   margin:  0px !important;
-    padding: 0 0 0 40px;
-}
-
         .dropdown-menu {
           display: none;
           background-color: #fff;
           border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: 10px 0;
         }
 
         .dropdown-item {
           color: black !important;
+          padding: 6px 20px;
         }
 
-        .nav-link {
-          transition: color 0.2s ease-in-out;
+        .nav-link, .dropdown-toggle, .dropdown-item {
+          transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .dropdown-toggle:hover {
           color: #fff !important;
+        }
+
+        @media(max-width: 425px) {
+          .nav-h_top li:nth-child(3), /* Track Order */
+          .nav-h_top li:nth-child(4) { /* Delivery Time */
+            display: none !important;
+          }
         }
       `}</style>
 
-      <div className="container-fluid">
-        <div className="row align-items-center justify-content-between">
-          <div className="col-12">
-            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 flex-wrap">
+        <div className="container-fluid">
+          <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
 
-              {/* Left Section */}
-              <div className="d-flex flex-wrap gap-3 align-items-center">
-                <ul className="nav-h_top d-flex gap-3 list-unstyled mb-0 flex-wrap">
-                  <li className="dropdown hover-dropdown">
-                    <a href="#" className="dropdown-toggle text-white fw-semibold" role="button" aria-expanded="false">English</a>
-                    <ul className="dropdown-menu">
-                      <li><a href="#" className="dropdown-item text-black">Italian</a></li>
-                      <li><a href="#" className="dropdown-item text-black">Russian</a></li>
-                      <li><a href="#" className="dropdown-item text-black">Chinese</a></li>
-                    </ul>
-                  </li>
-
-                  <li className="dropdown hover-dropdown">
-                    <a href="#" className="dropdown-toggle text-white fw-semibold" role="button" aria-expanded="false">USD</a>
-                    <ul className="dropdown-menu">
-                      <li><a href="#" className="dropdown-item text-black">Ruble</a></li>
-                      <li><a href="#" className="dropdown-item text-black">Rupee</a></li>
-                      <li><a href="#" className="dropdown-item text-black">Euro</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a className="text-white fw-semibold text-decoration-none" href="/trackorder">Track Order</a></li>
-                  <li className="d-none d-md-block small" style={{ paddingLeft: '15px', borderLeft: '1px solid #fff' }} >
-                    <a style={{ fontSize: '15px', fontWeight: '400' }} className="text-white text-decoration-none" href="#">We deliver every day from 7:00 to 22:00</a>
-                  </li>
+            {/* Language & Currency */}
+            <ul className="nav-h_top d-flex gap-3 list-unstyled mb-0 align-items-center">
+              <li className="dropdown hover-dropdown">
+                <a href="#" className="dropdown-toggle text-white fw-semibold" style={{textDecoration:'none'}} >English</a>
+                <ul className="dropdown-menu">
+                  <li><a href="#" className="dropdown-item">Italian</a></li>
+                  <li><a href="#" className="dropdown-item">Russian</a></li>
+                  <li><a href="#" className="dropdown-item">Chinese</a></li>
                 </ul>
-              </div>
+              </li>
 
-              {/* Navigation */}
-              <div className="nav-area ">
-                {isMobile ? (
-                  <div className="d-flex justify-content-end">
-                    <div className="dropdown">
-                      <button className="btn btn-light dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <Menu className="me-1" size={18} />
-                      </button>
+              <li className="dropdown hover-dropdown">
+                <a href="#" className="dropdown-toggle text-white fw-semibold" style={{textDecoration:'none'}} >USD</a>
+                <ul className="dropdown-menu">
+                  <li><a href="#" className="dropdown-item">Ruble</a></li>
+                  <li><a href="#" className="dropdown-item">Rupee</a></li>
+                  <li><a href="#" className="dropdown-item">Euro</a></li>
+                </ul>
+              </li>
 
+              <li><a className="text-white fw-semibold text-decoration-none" href="/trackorder">Track Order</a></li>
+              <li className="d-none d-md-block" style={{ paddingLeft: '15px', borderLeft: '1px solid #fff' }}>
+                <span className="text-white" style={{ fontSize: '14px', fontWeight: '400' }}>
+                  Delivery every day 7:00 AM – 10:00 PM
+                </span>
+              </li>
+            </ul>
 
-                      <ul className="dropdown-menu dropdown-menu-end">
-                        <li><Link className="dropdown-item text-black" to="/">Home</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/about">About</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/shop">Shop</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/vendor">Vendors</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/pages">Pages</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/blogmain">Blog</Link></li>
-                        <li><Link className="dropdown-item text-black" to="/contact">Contact</Link></li>
+            {/* Navigation Menu */}
+            <div className="nav-area">
+              {isMobile ? (
+                <div className="dropdown text-end">
+                  <button className="btn btn-light dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Menu className="me-1" size={18} />
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-end">
+                    <li><Link className="dropdown-item" to="/">Home</Link></li>
+                    <li><Link className="dropdown-item" to="/about">About</Link></li>
+                    <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
+                    <li><Link className="dropdown-item" to="/vendor">Vendors</Link></li>
+                    <li><Link className="dropdown-item" to="/blogmain">Blog</Link></li>
+                    <li><Link className="dropdown-item" to="/contact">Contact</Link></li>
+                  </ul>
+                </div>
+              ) : (
+                <nav>
+                  <ul className="d-flex flex-wrap list-unstyled gap-4 mb-0 align-items-center">
+                    <li><Link className="text-white text-decoration-none" to="/">Home</Link></li>
+                    <li><Link className="text-white text-decoration-none" to="/about">About</Link></li>
+                    <li className="dropdown hover-dropdown">
+                      <a className="text-white dropdown-toggle text-decoration-none" href="#">Shop</a>
+                      <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="/shop">Shop Grid</a></li>
+                        <li><a className="dropdown-item" href="/shop-list-sidebar">List Sidebar</a></li>
+                        <li><a className="dropdown-item" href="/shop-grid-top-filter">Top Filter Grid</a></li>
                       </ul>
-
-                    </div>
-                  </div>
-                ) : (
-                  <nav>
-                    <ul className="parent-nav d-flex flex-wrap justify-content-center gap-5 list-unstyled mb-0">
-                      <li><Link style={{ color: '#fff' }} to="/">Home</Link></li>
-                      <li><Link to="/about">About</Link></li>
-                      <li className="dropdown hover-dropdown">
-                        <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Shop</a>
-                        <ul className="dropdown-menu">
-                          <li><a className="dropdown-item text-black" href="/shop">Shop Grid Sidebar</a></li>
-                          <li><a className="dropdown-item text-black" href="/shop-list-sidebar">Shop List Sidebar</a></li>
-                          <li><a className="dropdown-item text-black" href="/shop-grid-top-filter">Top Filter Grid</a></li>
-                          <li><a className="dropdown-item text-black" href="/shop-list-top-filter">Top Filter List</a></li>
-                        </ul>
-                      </li>
-                      <li className="dropdown hover-dropdown">
-                        <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Vendors</a>
-                        <ul className="dropdown-menu">
-                          <li><Link className="dropdown-item text-black" to="/vendor">Vendor List</Link></li>
-                          <li><Link className="dropdown-item text-black" to="/vendorDetails">Vendor Details</Link></li>
-
-
-                        </ul>
-                      </li>
-                      {/* <li className="dropdown hover-dropdown">
-                        <a className="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" aria-expanded="false">Pages</a>
-                        <ul className="dropdown-menu">
-                          <li><a className="dropdown-item text-black" href="/dashboard">Dashboard</a></li>
-                          <li><a className="dropdown-item text-black" href="/about">About</a></li>
-                          <li><a className="dropdown-item text-black" href="/store">Store</a></li>
-                          <li><a className="dropdown-item text-black" href="/faq">FAQ</a></li>
-                          <li><a className="dropdown-item text-black" href="/invoice">Invoice</a></li>
-                          <li><a className="dropdown-item text-black" href="/contact">Contact</a></li>
-                          <li><a className="dropdown-item text-black" href="/register">Register</a></li>
-                          <li><a className="dropdown-item text-black" href="/login">Login</a></li>
-                          <li><a className="dropdown-item text-black" href="/privacy-policy">Privacy Policy</a></li>
-                          <li><a className="dropdown-item text-black" href="/cookies-policy">Cookies Policy</a></li>
-                          <li><a className="dropdown-item text-black" href="/terms-condition">Terms & Condition</a></li>
-                          <li><a className="dropdown-item text-black" href="/404">Error</a></li>
-                        </ul>
-                      </li> */}
-                      <li><Link  to="/blogmain">Blog</Link></li>
-                      <li><Link  to="/contact">Contact</Link></li>
-                    </ul>
-                  </nav>
-                )}
-              </div>
-
+                    </li>
+                    <li className="dropdown hover-dropdown">
+                      <a className="text-white dropdown-toggle text-decoration-none" href="#">Vendors</a>
+                      <ul className="dropdown-menu">
+                        <li><Link className="dropdown-item" to="/vendor">Vendor List</Link></li>
+                        <li><Link className="dropdown-item" to="/vendorDetails">Vendor Details</Link></li>
+                      </ul>
+                    </li>
+                    <li><Link className="text-white text-decoration-none" to="/blogmain">Blog</Link></li>
+                    <li><Link className="text-white text-decoration-none" to="/contact">Contact</Link></li>
+                  </ul>
+                </nav>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <style>
+        {`
+    @media (max-width: 991.98px) {
+      .hide-below-992 {
+        display: none !important;
+      }
+    }
+  `}
+      </style>
+
+    </>
   );
 };

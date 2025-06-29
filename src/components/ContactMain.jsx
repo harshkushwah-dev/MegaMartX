@@ -1,13 +1,25 @@
 import React from 'react';
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+
 
 const ContactMain = () => {
-  const cardHoverStyle = {
-    transition: 'all 0.3s ease-in-out',
-    cursor: 'pointer',
-  };
+  const locations = [
+    {
+      title: 'Mumbai Head Office',
+      address: '401 MegaMartX Tower, Andheri East, Mumbai, MH 400069',
+      phone: '+91 88791 45630',
+      email: 'mumbai@megamartx.com',
+    },
+    {
+      title: 'Bangalore Warehouse',
+      address: 'Plot 16, Industrial Layout, Whitefield, Bangalore, KA 560066',
+      phone: '+91 98860 21458',
+      email: 'bangalore@megamartx.com',
+    },
+  ];
 
   return (
-    <div className="demo-one">
+    <div className="contact-main">
       {/* Contact Banner */}
       <div
         style={{
@@ -17,58 +29,46 @@ const ContactMain = () => {
           padding: '100px 0',
           textAlign: 'center',
           color: '#fff',
+          animation: 'fadeIn 1.2s ease-in-out',
         }}
       >
         <div className="container">
-          <h1 style={{ fontSize: '42px', fontWeight: 'bold' }}>Ask Us A Question</h1>
-          <p style={{ maxWidth: '700px', margin: '10px auto', fontSize: '16px', lineHeight: '1.6' }}>
+          <h1 className="display-4 fw-bold">Ask Us A Question</h1>
+          <p className="lead" style={{ maxWidth: '700px', margin: '10px auto' }}>
             We’re happy to help with anything! Reach out via the form or our locations.
           </p>
         </div>
       </div>
 
       {/* Contact Info & Map */}
-      <div style={{ padding: '80px 0' }}>
+      <div className="py-5 bg-light">
         <div className="container">
-          <div className="row">
+          <div className="row g-5">
             {/* Left Info */}
             <div className="col-lg-4">
-              <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px' }}>
-                You can ask us questions!
-              </h2>
-              <p style={{ fontSize: '15px', color: '#555', marginBottom: '30px' }}>
-                Connect with us directly at any of our local stores or drop a message anytime.
+              <h2 className="fw-bold mb-3">Visit or Reach Out to Us</h2>
+              <p className="text-muted mb-4">
+                We’d love to hear from you. Find our nearest location or drop us a line.
               </p>
 
-              {[...Array(2)].map((_, idx) => (
+              {locations.map((loc, idx) => (
                 <div
                   key={idx}
-                  className="location-single-card"
-                  style={{
-                    background: '#fff',
-                    padding: '20px',
-                    borderRadius: '10px',
-                    marginBottom: '20px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
-                    transform: 'scale(1)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-5px) scale(1.02)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                  className="p-4 rounded shadow-sm bg-white mb-4 hover-scale-card"
+                  style={{ transition: 'transform 0.3s ease' }}
                 >
-                  <h4 style={{ marginBottom: '5px', color: '#28a745' }}>
-                    {idx === 0 ? 'Berlin Germany Store' : 'Frankfurt Germany Store'}
-                  </h4>
-                  <p style={{ fontSize: '14px', color: '#555' }}>
-                    259 Daniel Road, FKT 2589 Berlin, Germany.
+                  <h5 className="text-success fw-bold mb-2">
+                    <FaMapMarkerAlt className="me-2 text-muted" /> {loc.title}
+                  </h5>
+                  <p className="text-muted small mb-1">{loc.address}</p>
+                  <p className="small mb-1">
+                    <FaPhoneAlt className="me-2 text-success" />{' '}
+                    <a href={`tel:${loc.phone}`} className="text-primary text-decoration-none">{loc.phone}</a>
                   </p>
-                  <a href="#" style={{ display: 'block', color: '#007bff', marginTop: '5px' }}>
-                    +856 (76) 259 6328
-                  </a>
-                  <a href="#" style={{ display: 'block', color: '#007bff' }}>
-                    info@example.com
-                  </a>
+                  <p className="small mb-0">
+                    <FaEnvelope className="me-2 text-success" />{' '}
+                    <a href={`mailto:${loc.email}`} className="text-dark text-decoration-none">{loc.email}</a>
+                  </p>
                 </div>
               ))}
             </div>
@@ -94,66 +94,58 @@ const ContactMain = () => {
       </div>
 
       {/* Contact Form */}
-      <div style={{ paddingBottom: '80px' }}>
+      <div className="pb-5">
         <div className="container">
-          <div
-            style={{
-              background: '#f9f9f9',
-              borderRadius: '12px',
-              padding: '40px 30px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
-            }}
-          >
+          <div className="bg-white rounded p-5 shadow-sm">
             <div className="row align-items-center">
               {/* Form */}
               <div className="col-lg-7">
-                <h3 style={{ fontSize: '26px', fontWeight: '600', marginBottom: '30px' }}>
-                  Fill Out The Form Below
-                </h3>
+                <h3 className="fw-bold mb-4">Fill Out The Form Below</h3>
                 <form>
-                  <div style={{ display: 'flex', gap: '15px', marginBottom: '15px' }}>
-                    <input
-                      type="text"
-                      placeholder="Your Name*"
-                      style={inputStyle}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    />
-                    <input
-                      type="email"
-                      placeholder="Your Email*"
-                      style={inputStyle}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    />
+                  <div className="row g-3">
+                    <div className="col-md-6">
+                      <input
+                        type="text"
+                        placeholder="Your Name*"
+                        className="form-control"
+                        style={inputStyle}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <input
+                        type="email"
+                        placeholder="Your Email*"
+                        className="form-control"
+                        style={inputStyle}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                      />
+                    </div>
                   </div>
-                  <select style={{ ...inputStyle, width: '100%' }}>
-                    <option value="">Select Subject</option>
-                    <option value="inquiry">General Inquiry</option>
-                    <option value="support">Technical Support</option>
-                    <option value="feedback">Feedback</option>
-                  </select>
-                  <textarea
-                    placeholder="Your Message..."
-                    rows="5"
-                    style={{ ...inputStyle, width: '100%', marginTop: '15px' }}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                  ></textarea>
+                  <div className="my-3">
+                    <select className="form-select" style={inputStyle}>
+                      <option value="">Select Subject</option>
+                      <option value="inquiry">General Inquiry</option>
+                      <option value="support">Technical Support</option>
+                      <option value="feedback">Feedback</option>
+                    </select>
+                  </div>
+                  <div className="mb-3">
+                    <textarea
+                      placeholder="Your Message..."
+                      rows="5"
+                      className="form-control"
+                      style={inputStyle}
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
+                    ></textarea>
+                  </div>
                   <button
                     type="submit"
-                    style={{
-                      marginTop: '20px',
-                      padding: '12px 25px',
-                      backgroundColor: '#28a745',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: '6px',
-                      fontSize: '16px',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                    }}
+                    className="btn btn-success px-4 py-2 fw-semibold"
+                    style={{ transition: 'background-color 0.3s ease' }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#218838')}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#28a745')}
                   >
@@ -171,7 +163,11 @@ const ContactMain = () => {
                     width: '100%',
                     borderRadius: '12px',
                     boxShadow: '0 6px 16px rgba(0,0,0,0.1)',
+                    transform: 'scale(1)',
+                    transition: 'transform 0.3s ease',
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 />
               </div>
             </div>
@@ -184,12 +180,12 @@ const ContactMain = () => {
 
 // Styles for input fields
 const inputStyle = {
-  padding: '10px 15px',
+  padding: '12px 16px',
   border: '1px solid #ccc',
   borderRadius: '6px',
-  fontSize: '14px',
+  fontSize: '15px',
   width: '100%',
-  transition: 'border-color 0.3s',
+  transition: 'border-color 0.3s ease',
 };
 
 function handleFocus(e) {

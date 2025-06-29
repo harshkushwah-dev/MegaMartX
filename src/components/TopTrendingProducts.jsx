@@ -141,7 +141,7 @@ const TopTrendingProducts = () => {
                 <button
                   className="btn btn-sm btn-outline-success mt-auto"
                   onClick={() => handleAddToCart(product)}
-                  style={{fontSize:'20px', borderRadius:'10px'}}
+                  style={{fontSize:'16px', borderRadius:'10px'}}
                 >
                   <i className="fa fa-shopping-cart"></i> Add to Cart
                 </button>

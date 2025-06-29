@@ -2,256 +2,197 @@ import React from "react";
 
 const services = [
   {
-    id: '01',
-    title: 'Organic Food Services',
-    desc: 'Fresh, organic produce sourced directly from trusted farms.',
-    icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/01.svg',
+    id: "01",
+    title: "Organic Food Services",
+    desc: "Fresh, organic produce sourced directly from trusted farms.",
+    icon: "https://ekomart-nextjs.vercel.app/assets/images/service/01.svg",
   },
   {
-    id: '02',
-    title: 'Fast Delivery System',
-    desc: 'Reliable and fast delivery to your doorstep within hours.',
-    icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/02.svg',
+    id: "02",
+    title: "Fast Delivery System",
+    desc: "Reliable and fast delivery to your doorstep within hours.",
+    icon: "https://ekomart-nextjs.vercel.app/assets/images/service/02.svg",
   },
   {
-    id: '03',
-    title: 'Fresh Grocery Everyday',
-    desc: 'A daily restock of premium grocery items just for you.',
-    icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg',
+    id: "03",
+    title: "Fresh Grocery Everyday",
+    desc: "A daily restock of premium grocery items just for you.",
+    icon: "https://ekomart-nextjs.vercel.app/assets/images/service/03.svg",
   },
   {
-    id: '04',
-    title: '24/7 Customer Support',
-    desc: 'Our team is here for you anytime you need help or support.',
-    icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg',
+    id: "04",
+    title: "24/7 Customer Support",
+    desc: "Our team is here for you anytime you need help or support.",
+    icon: "https://ekomart-nextjs.vercel.app/assets/images/service/03.svg",
   },
 ];
+
 const Footer = () => {
   return (
     <>
-      <div className="rts-shorts-service-area rts-section-gap bg_primary">
+      <style>{`
+        .footer-title {
+          font-weight: 600;
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          color: #fff;
+        }
+
+        .footer-link {
+          color: #fff;
+          text-decoration: none;
+          display: inline-block;
+          transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-link:hover {
+          color: #28a745;
+          transform: translateX(5px);
+        }
+
+        .footer-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-input {
+          padding: 10px;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          width: 100%;
+        }
+
+        .footer-button {
+          padding: 10px;
+          border-radius: 6px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          margin-top: 8px;
+          width: 100%;
+        }
+
+        .footer-social a {
+          color: #fff;
+          margin-right: 10px;
+          font-size: 1.2rem;
+          transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+          color: #28a745;
+          transform: scale(1.2);
+        }
+
+        footer p,
+        footer li,
+        footer small,
+        footer span,
+        footer h5,
+        footer h6 {
+          color: #ccc !important;
+        }
+      `}</style>
+
+      {/* Services Top Bar */}
+      <div className="bg-light py-5">
         <div className="container">
-          <div className="row g-4">
+          <div className="row g-4 text-center">
             {services.map((service, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-12" key={index}>
-                <div
-                  className="short-service-card text-center p-4 rounded-4 shadow-sm h-100 bg-white"
-                  style={{
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-5px)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
-                  }}
-                >
-                  <div className="icon-area mb-3">
-                    <img
-                      src={service.icon}
-                      alt={service.title}
-                      style={{ width: '60px', height: '60px', objectFit: 'contain' }}
-                    />
-                  </div>
-                  <h4 className="title mb-2" style={{ fontWeight: '600', fontSize: '1.25rem' }}>
-                    {service.title}
-                  </h4>
-                  <p className="disc" style={{ color: '#555', fontSize: '1rem', lineHeight: '1.6' }}>
-                    {service.desc}
-                  </p>
+              <div className="col-6 col-md-3" key={index}>
+                <div className="p-4 bg-white rounded-4 shadow-sm footer-card h-100 transition">
+                  <img src={service.icon} alt={service.title} style={{ width: "50px" }} />
+                  <h6 className="mt-3 fw-bold">{service.title}</h6>
+                  <p style={{ fontSize: "14px", color: "#666" }}>{service.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div>
-        <div className="rts-footer-area pt--80 bg_light-1">
-          <div className="" style={{ padding: '0 15px' }} >
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="footer-main-content-wrapper pb--70 pb_sm--30">
-                  <div className="single-footer-wized">
-                    <h3 className="footer-title">About Company</h3>
-                    <div className="call-area">
-                      <div className="icon">
-                        <i className="fa-solid fa-phone"></i>
-                      </div>
-                      <div className="info">
-                        <span>Have Question? Call Us 24/7</span>
-                        <a href="#" className="number">
-                          +258 3692 2569
-                        </a>
-                      </div>
-                    </div>
-                    <div className="opening-hour">
-                      <div className="single">
-                        <p>
-                          Monday - Friday: <span>8:00am - 6:00pm</span>
-                        </p>
-                      </div>
-                      <div className="single">
-                        <p>
-                          Saturday: <span>8:00am - 6:00pm</span>
-                        </p>
-                      </div>
-                      <div className="single">
-                        <p>
-                          Sunday: <span>Service Close</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="single-footer-wized">
-                    <h3 className="footer-title">Our Stores</h3>
-                    <div className="footer-nav">
-                      <ul>
-                        <li>
-                          <a href="#">Delivery Information</a>
-                        </li>
-                        <li>
-                          <a href="#">Privacy Policy</a>
-                        </li>
-                        <li>
-                          <a href="#">Terms &amp; Conditions</a>
-                        </li>
-                        <li>
-                          <a href="#">Support Center</a>
-                        </li>
-                        <li>
-                          <a href="#">Careers</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+      {/* Main Footer */}
+      <footer className="bg-dark text-light pt-5 pb-4">
+        <div className="container">
+          <div className="row g-4">
+            {/* About */}
+            <div className="col-md-3">
+              <h4 className="footer-title">About Company</h4>
+              <p className="small">Have Questions? Call Us 24/7</p>
+              <h5 className="text-success">+258 3692 2569</h5>
+              <ul className="list-unstyled mt-3 small">
+                <li>Mon-Fri: 8:00am - 6:00pm</li>
+                <li>Saturday: 8:00am - 6:00pm</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
 
-                  <div className="single-footer-wized">
-                    <h3 className="footer-title">Shop Categories</h3>
-                    <div className="footer-nav">
-                      <ul>
-                        <li>
-                          <a href="#">Contact Us</a>
-                        </li>
-                        <li>
-                          <a href="#">Information</a>
-                        </li>
-                        <li>
-                          <a href="#">About Us</a>
-                        </li>
-                        <li>
-                          <a href="#">Careers</a>
-                        </li>
-                        <li>
-                          <a href="#">Nest Stories</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+            {/* Store Links */}
+            <div className="col-md-2">
+              <h4 className="footer-title">Our Stores</h4>
+              <ul className="list-unstyled">
+                <li><a className="footer-link" href="#">Delivery Info</a></li>
+                <li><a className="footer-link" href="#">Privacy Policy</a></li>
+                <li><a className="footer-link" href="#">Terms & Conditions</a></li>
+                <li><a className="footer-link" href="#">Support Center</a></li>
+                <li><a className="footer-link" href="#">Careers</a></li>
+              </ul>
+            </div>
 
-                  <div className="single-footer-wized">
-                    <h3 className="footer-title">Useful Links</h3>
-                    <div className="footer-nav">
-                      <ul>
-                        <li>
-                          <a href="#">Cancellation &amp; Returns</a>
-                        </li>
-                        <li>
-                          <a href="#">Report Infringement</a>
-                        </li>
-                        <li>
-                          <a href="#">Payments</a>
-                        </li>
-                        <li>
-                          <a href="#">Shipping</a>
-                        </li>
-                        <li>
-                          <a href="#">FAQ</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+            {/* Shop Categories */}
+            <div className="col-md-2">
+              <h4 className="footer-title">Shop Categories</h4>
+              <ul className="list-unstyled">
+                <li><a className="footer-link" href="#">Fruits</a></li>
+                <li><a className="footer-link" href="#">Vegetables</a></li>
+                <li><a className="footer-link" href="#">Meat</a></li>
+                <li><a className="footer-link" href="#">Bakery</a></li>
+                <li><a className="footer-link" href="#">Beverages</a></li>
+              </ul>
+            </div>
 
-                  <div className="single-footer-wized">
-                    <h3 className="footer-title">Our Newsletter</h3>
-                    <p className="disc-news-letter">
-                      Subscribe to the mailing list to receive updates one <br /> the
-                      new arrivals and other discounts
-                    </p>
-                    <form className="footersubscribe-form" action="#">
-                      <input
-                        type="email"
-                        placeholder="Your email address"
-                        required
-                      />
-                      <button className="rts-btn btn-primary">Subscribe</button>
-                    </form>
-                    <p className="dsic">I would like to receive news and special offer</p>
-                  </div>
-                </div>
+            {/* Useful Links */}
+            <div className="col-md-2">
+              <h4 className="footer-title">Useful Links</h4>
+              <ul className="list-unstyled">
+                <li><a className="footer-link" href="#">Returns</a></li>
+                <li><a className="footer-link" href="#">Report Issue</a></li>
+                <li><a className="footer-link" href="#">Payments</a></li>
+                <li><a className="footer-link" href="#">Shipping</a></li>
+                <li><a className="footer-link" href="#">FAQs</a></li>
+              </ul>
+            </div>
 
-                <div className="social-and-payment-area-wrapper">
-                  <div className="social-one-wrapper">
-                    <span>Follow Us:</span>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i className="fa-brands fa-facebook-f"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa-brands fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa-brands fa-youtube"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa-brands fa-whatsapp"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i className="fa-brands fa-instagram"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="payment-access">
-                    <span>Payment Accepts:</span>
-                    <img src="https://ekomart-nextjs.vercel.app/assets/images/payment/01.png" alt="" />
-                  </div>
-                </div>
-              </div>
+            {/* Newsletter */}
+            <div className="col-md-3">
+              <h4 className="footer-title">Newsletter</h4>
+              <p className="small">Subscribe to get the latest news, updates & offers.</p>
+              <input type="email" placeholder="Your email" className="footer-input" />
+              <button className="footer-button">Subscribe</button>
+            </div>
+          </div>
+
+          {/* Social & Payments */}
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 pt-4 border-top border-secondary">
+            <div className="footer-social mb-3 mb-md-0">
+              <span className="me-2">Follow Us:</span>
+              <a href="#"><i className="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i className="fa-brands fa-twitter"></i></a>
+              <a href="#"><i className="fa-brands fa-youtube"></i></a>
+              <a href="#"><i className="fa-brands fa-whatsapp"></i></a>
+              <a href="#"><i className="fa-brands fa-instagram"></i></a>
+            </div>
+            <div>
+              <span className="me-2 " style={{color:'#fff'}} >Payments:</span>
+              <img src="https://ekomart-nextjs.vercel.app/assets/images/payment/01.png" alt="payment methods" style={{ height: '50px' }} />
             </div>
           </div>
         </div>
+      </footer>
 
-        <div className="rts-copyright-area" style={{ backgroundColor: '#fff' }} >
-          <div className="" style={{ padding: '0 15px' }} >
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="copyright-between-1">
-                  <p className="disc">
-                    Copyright 2025 <a href="#">©Ekomart</a>. All rights reserved.
-                  </p>
-                  <a href="#" className="playstore-app-area">
-                    <span>Download App</span>
-                    <img src="https://ekomart-nextjs.vercel.app/assets/images/payment/02.png" alt="" />
-                    <img src="https://ekomart-nextjs.vercel.app/assets/images/payment/02.png" alt="" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Copyright */}
+      <div className="bg-light text-center py-3 small text-muted">
+        © 2025 <strong>Ekomart</strong> – All rights reserved.
       </div>
     </>
   );

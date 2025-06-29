@@ -1,359 +1,154 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import CounterSection from './CounterSection';
 
-
-const services3 = [
-    {
-        title: 'Best Prices & Offers',
-        description: 'We prepared special discounts you on grocery products.',
-
-    },
-    {
-        title: '100% Return Policy',
-        description: 'We prepared special discounts you on grocery products.',
-
-    },
-    {
-        title: 'Support 24/7',
-        description: 'We prepared special discounts you on grocery products.',
-
-    },
-    {
-        title: 'Great Offer Daily Deal',
-        description: 'We prepared special discounts you on grocery products.',
-
-    },
-];
-const feedbacks = [
-    {
-        name: 'Andrew D. Smith',
-        role: 'Manager',
-        message:
-            '“According to the council of supply chain professionals the council of logistics management logistics is the process of planning, implementing and controlling procedures”',
-        leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png',
-        rightImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/02.png',
-    },
-    {
-        name: 'Sarah Johnson',
-        role: 'Sales Executive',
-        message:
-            '“Amazing experience! Product quality is top-notch, and delivery was super fast. Highly recommend MegaMartX to everyone.”',
-        leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png',
-        rightImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/02.png',
-    },
-    {
-        name: 'Michael Brown',
-        role: 'Retailer',
-        message:
-            '“The platform is very easy to use and customer service is excellent. I’ll keep shopping from here.”',
-        leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png',
-        rightImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/02.png',
-    },
-    {
-        name: 'Emily Davis',
-        role: 'Customer',
-        message:
-            '“Great variety and affordable prices. The grocery section is my favorite!”',
-        leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png',
-        rightImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/02.png',
-    },
-];
-const services = [
-    {
-        id: '01',
-        title: 'Organic Food Services',
-        desc: 'Fresh, organic produce sourced directly from ',
-        icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/01.svg',
-    },
-    {
-        id: '02',
-        title: 'Fast Delivery System',
-        desc: 'Reliable and fast delivery to your doorstep within hours.',
-        icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/02.svg',
-    },
-    {
-        id: '03',
-        title: 'Fresh Grocery Everyday',
-        desc: 'A daily restock of premium grocery items just for you.',
-        icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg',
-    },
-    {
-        id: '04',
-        title: '24/7 Customer Support',
-        desc: 'Our team is here for you anytime you need help ',
-        icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg',
-    },
-];
-
 const AboutPage = () => {
-    return (
-        <>
-            <div className="about-page">
-                {/* Hero Section */}
-                <div
-                    className="about-banner-area-bg rts-section-gap bg_image"
-                    style={{
-                        backgroundImage: `url("https://ekomart-nextjs.vercel.app/assets/images/about/01.jpg")`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        height: '400px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#fff',
-                        textAlign: 'center'
-                    }}
+  const services = [
+    { id: '01', title: 'Organic Food Services', desc: 'Fresh, organic produce...', icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/01.svg' },
+    { id: '02', title: 'Fast Delivery System', desc: 'Reliable and fast delivery...', icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/02.svg' },
+    { id: '03', title: 'Fresh Grocery Everyday', desc: 'A daily restock...', icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg' },
+    { id: '04', title: '24/7 Customer Support', desc: 'Our team is here for you...', icon: 'https://ekomart-nextjs.vercel.app/assets/images/service/03.svg' },
+  ];
+
+  const feedbacks = [
+    { name: 'Sarah Johnson', role: 'Sales Executive', message: '“Amazing experience...”', leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png' },
+    { name: 'Michael Brown', role: 'Retailer', message: '“Very easy to use...”', leftImage: 'https://ekomart-nextjs.vercel.app/assets/images/testimonial/01.png' },
+  ];
+
+  const teamMembers = [
+    { name: 'Samuel Alexander', role: 'Design Director', img: 'https://ekomart-nextjs.vercel.app/assets/images/team/01.jpg' },
+    { name: 'Isabella Charlotte', role: 'Marketing Head', img: 'https://ekomart-nextjs.vercel.app/assets/images/team/02.jpg' },
+  ];
+
+  const partnerLogos = [
+    'https://ekomart-nextjs.vercel.app/assets/images/vendor/01.svg',
+    'https://ekomart-nextjs.vercel.app/assets/images/vendor/02.svg',
+    'https://ekomart-nextjs.vercel.app/assets/images/vendor/03.svg',
+    'https://ekomart-nextjs.vercel.app/assets/images/vendor/04.svg',
+  ];
+
+  return (
+    <div className="about-page">
+      {/* Our Mission Section */}
+      <section className="py-5 bg-white">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-3 display-5">Our Mission</h2>
+          <p className="text-muted fs-5 mb-4 mx-auto" style={{ maxWidth: '800px' }}>
+            At MegaMartX, our mission is to deliver fresh, affordable, and high-quality groceries directly to your doorstep.
+            We believe in creating a healthy, accessible, and sustainable shopping experience for everyone.
+          </p>
+          <motion.img
+            src="https://imgs.search.brave.com/3ffyBzb9h91LQ5iV9NKMl47pMv26cz9apo9-KB7ZWpg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvZWNvbW1lcmNl/LW9ubGluZS1zaG9w/cGluZy12ZWN0b3It/aWxsdXN0cmF0aW9u/XzY3NzE3OS05My5q/cGc_c2VtdD1haXNf/aXRlbXNfYm9vc3Rl/ZCZ3PTc0MA"
+            alt="mission"
+            className="img-fluid rounded shadow-sm"
+            style={{ maxHeight: '400px', objectFit: 'cover' }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          />
+        </div>
+      </section>
+
+      {/* Trusted Partners Section */}
+      <section className="py-5 bg-light">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-4 display-5">Our Trusted Partners</h2>
+          <div className="row justify-content-center align-items-center g-4">
+            {partnerLogos.map((logo, i) => (
+              <div className="col-6 col-sm-3" key={i}>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white p-3 rounded shadow-sm"
                 >
+                  <img
+                    src={logo}
+                    alt={`Partner ${i}`}
+                    className="img-fluid"
+                    style={{ maxHeight: '80px', objectFit: 'contain' }}
+                  />
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="inner-content-about-area text-center">
-                                    <h1 className="title">Do You Want To Know Us?</h1>
-                                    <p className="disc">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pretium mollis ex, vel interdum augue faucibus sit amet. Proin tempor purus ac suscipit sagittis.
-                                    </p>
-                                    <a href="/contact" className="rts-btn btn-primary">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
+      {/* Services Section */}
+      <section className="py-5 bg-light">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-2 display-5">Why Choose Us?</h2>
+          <p className="text-muted mb-4">We bring unmatched value to your doorstep</p>
+          <div className="row g-4">
+            {services.map((service, index) => (
+              <div className="col-12 col-sm-6 col-md-3" key={index}>
+                <motion.div
+                  whileHover={{ scale: 1.05, boxShadow: '0px 12px 24px rgba(0,0,0,0.15)' }}
+                  transition={{ duration: 0.3 }}
+                  className="p-4 bg-white rounded h-100 shadow-sm"
+                >
+                  <img src={service.icon} alt={service.title} style={{ width: '50px' }} />
+                  <h5 className="fw-bold mt-3">{service.title}</h5>
+                  <p className="text-muted">{service.desc}</p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-5">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-2 display-5">Meet Our Expert Team</h2>
+          <p className="text-muted mb-4">The people behind our success</p>
+          <div className="row g-4">
+            {teamMembers.map((member, index) => (
+              <div className="col-12 col-sm-6 col-md-3" key={index}>
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  className="p-3 bg-white rounded shadow-sm text-center h-100"
+                >
+                  <img src={member.img} alt={member.name} className="img-fluid rounded mb-3" />
+                  <h5 className="fw-bold">{member.name}</h5>
+                  <p className="text-muted">{member.role}</p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback Section */}
+      <section className="py-5 bg-light">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-2 display-5">What Our Customers Say</h2>
+          <p className="text-muted mb-5">Thousands of happy customers share their experience</p>
+          <div className="row g-4">
+            {feedbacks.map((fb, index) => (
+              <div className="col-12 col-md-6" key={index}>
+                <motion.div
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  transition={{ type: 'tween', duration: 0.3 }}
+                  className="p-4 bg-white rounded shadow-sm text-start h-100"
+                >
+                  <div className="d-flex align-items-center mb-3">
+                    <img src={fb.leftImage} alt={fb.name} className="rounded-circle" width="60" height="60" />
+                    <div className="ms-3">
+                      <h6 className="fw-bold mb-0">{fb.name}</h6>
+                      <small className="text-muted">{fb.role}</small>
                     </div>
-                </div>
-
-                {/* Counter Section */}
-                <CounterSection />
-
-                {/* About Section with Image */}
-                <div className="rts-about-area rts-section-gap2 bg-light position-relative py-5">
-                    <div className="container-3">
-                        <div className="row align-items-center">
-                            {/* Left Image with Badge */}
-                            <div className="col-lg-5 mb-4 mb-lg-0">
-                                <div className="thumbnail-left position-relative">
-                                    <img
-                                        src="https://ekomart-nextjs.vercel.app/assets/images/about/02.jpg"
-                                        alt="About"
-                                        className="img-fluid rounded-4 shadow-lg"
-                                    />
-                                    <span
-                                        className="position-absolute top-0 start-0 m-3 px-4 py-2 text-white"
-                                        style={{
-                                            background: 'linear-gradient(135deg, #629D23, #9ddc59)',
-                                            borderRadius: '0.75rem',
-                                            fontWeight: '600',
-                                            fontSize: '1rem',
-                                            boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                                        }}
-                                    >
-                                        Since 1999
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Right Text & Checklist */}
-                            <div className="col-lg-7 ps-lg-5">
-                                <div className="about-content-area-1">
-                                    <h2
-                                        className="title mb-4"
-                                        style={{
-                                            fontSize: '4rem',
-                                            fontWeight: '700',
-                                            lineHeight: '1.3',
-                                            color: '#333',
-                                        }}
-                                    >
-                                        Your Destination for Quality Produce <br /> and Pantry Essentials
-                                    </h2>
-                                    <p
-                                        className="disc mb-4"
-                                        style={{ fontSize: '2rem', color: '#555', lineHeight: '1.8' }}
-                                    >
-                                        We deliver fresh groceries with love and care. From pantry staples to seasonal produce,
-                                        MegaMartX ensures quality at your doorstep—every single day.
-                                    </p>
-
-                                    <div className="row g-3">
-                                        {[
-                                            "Fresh, locally-sourced fruits ",
-                                            "Trusted supply chain with quality checks",
-                                            "Fast, safe delivery across major cities",
-                                            "Affordable pricing with daily deals",
-                                            "Customer-first return and refund policy",
-                                            "Dedicated 24/7 support team"
-                                        ].map((text, i) => (
-                                            <div className="col-md-6 d-flex align-items-start" key={i}>
-                                                <i
-                                                    className="fa-solid fa-circle-check text-success me-2 mt-1"
-                                                    style={{ fontSize: '18px' }}
-                                                ></i>
-                                                <span style={{ fontSize: '18px', color: '#333' }}>{text}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                {/* Team Section */}
-                <div className="section-seperator">
-                    <div className="container-3">
-                        <hr className="section-seperator" />
-                    </div>
-                </div>
-
-                <div className="meet-our-expart-team rts-section-gap2">
-                    <div className="container-3">
-                        <div className="row">
-                            <div className="col-lg-12 text-center">
-                                <h2 className="title">Meet Our Expert Team</h2>
-                                <p className="disc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pretium mollis ex, vel interdum augue faucibus sit amet.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="row g-5 mt--40">
-                            {[
-                                { name: "Samuel Alexander", role: "Design Director", img: "https://ekomart-nextjs.vercel.app/assets/images/team/01.jpg" },
-                                { name: "Isabella Charlotte", role: "Design Director", img: "https://ekomart-nextjs.vercel.app/assets/images/team/02.jpg" },
-                                { name: "William Ethan", role: "Design Director", img: "https://ekomart-nextjs.vercel.app/assets/images/team/03.jpg" },
-                                { name: "Sophia Amelia", role: "Design Director", img: "https://ekomart-nextjs.vercel.app/assets/images/team/04.jpg" }
-                            ].map((member, idx) => (
-                                <div className="col-lg-3 col-md-6 col-sm-12" key={idx}>
-                                    <div className="single-team-style-one">
-                                        <a href="#" className="thumbnail">
-                                            <img src={member.img} alt="team_single" />
-                                        </a>
-                                        <div className="bottom-content-area">
-                                            <div className="top">
-                                                <h3 className="title">{member.name}</h3>
-                                                <span className="designation">{member.role}</span>
-                                            </div>
-                                            <div className="bottom">
-                                                <a href="#" className="number">
-                                                    <i className="fa-solid fa-phone-rotary"></i> +25896 3158 3228
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
-            </div >
-            <div className="rts-service-area rts-section-gap2 bg_light-1">
-                <div className="container-3">
-                    {/* Title Area */}
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="title-center-area-main text-center">
-                                <h2 className="title">Why You Choose Us?</h2>
-                                <p className="disc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pretium mollis ex, vel interdum augue faucibus sit amet. Proin tempor purus ac suscipit...
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Services */}
-                    <div className="row mt--30 g-5">
-                        {services.map((service, index) => (
-                            <div className="col-lg-3 col-md-6 col-sm-12" key={index}>
-
-                                <div className="single-service-area-style-one">
-                                    <div className="icon-area">
-                                        <span className="bg-text">{service.id}</span>
-                                        <img src={service.icon} alt="service" />
-                                    </div>
-                                    <div className="bottom-content">
-                                        <h3 className="title">{service.title}</h3>
-                                        <p className="disc">{service.desc}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className="rts-cuystomers-feedback-area rts-section-gap2">
-                <div className="container-3">
-                    {/* Section Heading */}
-                    <div className="row">
-                        <div className="col-lg-12 text-center mb-5">
-                            <h2 style={{ fontSize: '3rem', fontWeight: '700' }}>What Our Customers Say</h2>
-                            <p style={{ fontSize: '1.2rem', color: '#555' }}>
-                                Real feedback from our happy customers across the globe.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Feedback List */}
-                    <div className="row g-5">
-                        {feedbacks.map((fb, index) => (
-                            <div className="col-lg-6 col-md-6 col-sm-12" key={index}>
-                                <div
-                                    className="feedback-card p-5 rounded-4 bg-white position-relative"
-                                    style={{
-                                        transition: 'all 0.4s ease',
-                                        cursor: 'pointer',
-                                        boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-                                        border: '1px solid #eee',
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(-10px)';
-                                        e.currentTarget.style.boxShadow = '0 10px 40px rgba(0,0,0,0.15)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
-                                    }}
-                                >
-                                    {/* Header */}
-                                    <div className="d-flex justify-content-between align-items-center mb-4">
-                                        <div className="d-flex align-items-center">
-                                            <img
-                                                src={fb.leftImage}
-                                                alt="user"
-                                                style={{
-                                                    width: '70px',
-                                                    height: '70px',
-                                                    borderRadius: '50%',
-                                                    objectFit: 'cover',
-                                                    border: '3px solid #00B894',
-                                                }}
-                                            />
-                                            <div className="ms-3">
-                                                <h4 style={{ fontSize: '1.5rem', fontWeight: '600' }}>{fb.name}</h4>
-                                                <span style={{ color: '#888', fontSize: '1rem' }}>{fb.role}</span>
-                                            </div>
-                                        </div>
-                                        <img src={fb.rightImage} alt="quote" style={{ width: '45px', opacity: 0.5 }} />
-                                    </div>
-
-                                    {/* Body */}
-                                    <p style={{ fontSize: '1.3rem', lineHeight: '2', color: '#333' }}>
-                                        <i className="fa-solid fa-quote-left text-success me-2"></i>
-                                        {fb.message}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-
-
-        </>
-
-    );
+                  </div>
+                  <p className="text-dark mb-0"><i className="fa fa-quote-left text-success me-2"></i>{fb.message}</p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default AboutPage;

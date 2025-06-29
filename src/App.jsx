@@ -47,8 +47,8 @@ function App() {
             <>
               <HeaderTop />
               <HeaderSearch />
-              <HeaderMiddle />
-              <UncontrolledExample />
+               <HeaderMiddle />
+               <UncontrolledExample />
               <ProductList />
               <FeatureArea />
               <FeaturedGrocery />
@@ -57,7 +57,7 @@ function App() {
               <CategoryFeatureArea />
               <TopTrendingProducts />
               <LatestBlogPosts />
-              <Footer />
+              <Footer /> 
 
 
             </>
@@ -109,7 +109,7 @@ function App() {
               <HeaderSearch />
               <HeaderMiddle />
               <ContactMain />
-             
+
               <Footer />
             </>
           } />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Sample 25 vendors
+// Sample vendors (15 shown here; you can extend up to 25 as needed)
 const vendorsData = [
     {
         id: 1,
@@ -137,8 +137,97 @@ const vendorsData = [
         address: '39 Jawahar Nagar, Jaipur, India',
         phone: '+91 96666 88990',
     },
+    {
+        id: 16,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/01.svg',
+        name: 'Green Earth Grocers',
+        status: 'Closed',
+        rating: 4.1,
+        address: '120 Eco Street, Ahmedabad, India',
+        phone: '+91 93333 55667',
+    },
+    {
+        id: 17,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/02.svg',
+        name: 'Sunrise Supermart',
+        status: 'Open',
+        rating: 4.7,
+        address: '5 Andheri West, Mumbai, India',
+        phone: '+91 94444 11122',
+    },
+    {
+        id: 18,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/03.svg',
+        name: 'Himalaya Organic',
+        status: 'Closed',
+        rating: 4.0,
+        address: '22 Mall Road, Dehradun, India',
+        phone: '+91 95555 77889',
+    },
+    {
+        id: 19,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/04.svg',
+        name: 'Local Cart',
+        status: 'Open',
+        rating: 4.5,
+        address: '66 Residency Rd, Indore, India',
+        phone: '+91 98888 76543',
+    },
+    {
+        id: 20,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/05.svg',
+        name: 'Everyday Needs',
+        status: 'Closed',
+        rating: 4.2,
+        address: 'Plot 22, Salt Lake, Kolkata, India',
+        phone: '+91 93213 33333',
+    },
+    {
+        id: 21,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/01.svg',
+        name: 'The Daily Basket',
+        status: 'Open',
+        rating: 4.4,
+        address: 'Road 5, Jubilee Hills, Hyderabad, India',
+        phone: '+91 96543 21098',
+    },
+    {
+        id: 22,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/02.svg',
+        name: 'Fresh & Fast',
+        status: 'Closed',
+        rating: 4.3,
+        address: '10 Main Street, Lucknow, India',
+        phone: '+91 99876 54321',
+    },
+    {
+        id: 23,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/03.svg',
+        name: 'Daily Mart',
+        status: 'Open',
+        rating: 4.2,
+        address: '7 Ring Road, Patna, India',
+        phone: '+91 97777 33321',
+    },
+    {
+        id: 24,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/04.svg',
+        name: 'BazaarWala',
+        status: 'Closed',
+        rating: 4.0,
+        address: '2 Sector 20, Noida, India',
+        phone: '+91 91234 22334',
+    },
+    {
+        id: 25,
+        logo: 'https://ekomart-nextjs.vercel.app/assets/images/vendor/05.svg',
+        name: 'Organic Essence',
+        status: 'Open',
+        rating: 4.8,
+        address: '5 Mall Rd, Shimla, India',
+        phone: '+91 99999 11111',
+    },
 ];
-
 
 
 const VendorCard = ({ vendor }) => (
@@ -176,24 +265,41 @@ const VendorList = () => {
     );
 
     return (
-        <div className="vendor-search-area rts-section-gap">
+        <div className="vendor-search-area rts-section-gap mt-5 ">
             <div className="container">
                 {/* Header & Search */}
                 <div className="row mb-4">
-                    <div className="col-lg-12 d-flex flex-column flex-md-row justify-content-between align-items-center">
-                        <h2 className="title mb-3 mb-md-0" style={{fontSize:'35px'}} >Vendors List</h2>
-                        <div className="d-flex">
-                            <input
-                                type="text"
-                                placeholder="Search vendors by shop name..."
-                                className="form-control me-2"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                style={{ maxWidth: '400px', border:'1px solid black', borderRadius:'10px', width:'400px' }}
-                            />
-                            <button className="rts-btn btn-primary">Search</button>
+                    <div className="col-lg-12">
+                        <div className="row align-items-center gy-3 gx-3">
+                            {/* Heading */}
+                            <div className="col-lg-6 col-md-6 col-12">
+                                <h2 className="title m-0" style={{ fontSize: '28px' }}>Vendors List</h2>
+                            </div>
+
+                            {/* Search Bar */}
+                            <div className="col-lg-6 col-md-6 col-12">
+                                <div className="d-flex flex-column flex-sm-row align-items-stretch gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="Search vendors by shop name..."
+                                        className="form-control"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        style={{
+                                            border: '1px solid black',
+                                            borderRadius: '10px',
+                                            width: '100%',
+                                        }}
+                                    />
+                                    <button className="rts-btn btn-primary w-35 w-sm-auto" style={{backgroundColor:'#28a745', borderRadius:'10px', color:'#fff'}} >
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
 
                 {/* Vendor Cards */}
@@ -210,24 +316,32 @@ const VendorList = () => {
                 </div>
             </div>
 
-            {/* Extra Hover Style */}
+            {/* Extra Hover & Mobile Style */}
             <style jsx>{`
-  .vendor-hover {
-    transition: all 0.3s ease;
-    transform: translateY(0);
+                .vendor-hover {
+                    transition: all 0.3s ease;
+                    transform: translateY(0);
+                }
+                .vendor-hover:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                }
+                .vendor-hover a {
+                    color: #fff !important;
+                }
+                .vendor-hover a:hover {
+                    color: #fff !important;
+                }
+@media (max-width: 576px) {
+  .rts-btn.btn-primary {
+    width: 100%;
   }
-  .vendor-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  .form-control {
+    width: 100%;
   }
-  .vendor-hover a {
-    color: #fff !important; /* force white */
-  }
-  .vendor-hover a:hover {
-    color: #fff !important; /* ensure hover doesn't override */
-  }
-`}</style>
+}
 
+            `}</style>
         </div>
     );
 };
