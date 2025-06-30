@@ -16,7 +16,6 @@ const AddProduct = () => {
 
   const [image, setImage] = useState(null);
 
-  // Handle form input change
   const handleChange = (e) => {
     setProduct({
       ...product,
@@ -24,12 +23,10 @@ const AddProduct = () => {
     });
   };
 
-  // Handle image file select
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  // Form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,15 +38,13 @@ const AddProduct = () => {
 
     try {
       const res = await axios.post("http://localhost:5000/api/products/add", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       console.log("✅ Product added:", res.data);
       alert("Product Added Successfully");
 
-      // Clear form
+      // Reset form
       setProduct({
         name: "",
         regularPrice: "",
@@ -69,24 +64,130 @@ const AddProduct = () => {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="text" name="name" value={product.name} onChange={handleChange} placeholder="Product Name" required /><br />
-        <input type="number" name="regularPrice" value={product.regularPrice} onChange={handleChange} placeholder="Regular Price" required /><br />
-        <input type="number" name="salePrice" value={product.salePrice} onChange={handleChange} placeholder="Sale Price" /><br />
-        <input type="text" name="size" value={product.size} onChange={handleChange} placeholder="Size" /><br />
-        <input type="number" name="stock" value={product.stock} onChange={handleChange} placeholder="Stock" /><br />
-        <input type="text" name="sku" value={product.sku} onChange={handleChange} placeholder="SKU" /><br />
-        <input type="text" name="category" value={product.category} onChange={handleChange} placeholder="Category" /><br />
-        <input type="text" name="tag" value={product.tag} onChange={handleChange} placeholder="Tag" /><br />
-        <textarea name="description" value={product.description} onChange={handleChange} placeholder="Description" /><br />
-        <input type="file" name="image" onChange={handleImageChange} accept="image/*" required /><br />
+    <div style={styles.container}>
+      <div style={styles.card}>
+        <h2 style={styles.heading}>Add New Product</h2>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {[
+            { name: "name", type: "text", placeholder: "Product Name" },
+            { name: "regularPrice", type: "number", placeholder: "Regular Price" },
+            { name: "salePrice", type: "number", placeholder: "Sale Price" },
+            { name: "size", type: "text", placeholder: "Size" },
+            { name: "stock", type: "number", placeholder: "Stock" },
+            { name: "sku", type: "text", placeholder: "SKU" },
+            { name: "category", type: "text", placeholder: "Category" },
+            { name: "tag", type: "text", placeholder: "Tag" },
+          ].map((field, i) => (
+            <input
+              key={i}
+              name={field.name}
+              type={field.type}
+              value={product[field.name]}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+              style={styles.input}
+              required={field.name === "name" || field.name === "regularPrice"}
+            />
+          ))}
 
-        <button type="submit">Add Product</button>
-      </form>
+          <textarea
+            name="description"
+            value={product.description}
+            onChange={handleChange}
+            placeholder="Product Description"
+            rows="4"
+            style={{ ...styles.input, resize: "none" }}
+          ></textarea>
+
+          <input
+            type="file"
+            name="image"
+            onChange={handleImageChange}
+            accept="image/*"
+            required
+            style={styles.fileInput}
+          />
+
+          <button
+            type="submit"
+            style={styles.button}
+            onMouseEnter={(e) => (e.target.style.background = "#16a34a")}
+            onMouseLeave={(e) => (e.target.style.background = "#22c55e")}
+          >
+            Add Product
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
+
+// ✨ Inline styles with animations
+const styles = {
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    padding: "50px 20px",
+    background: "linear-gradient(to right, #f0fdf4, #dcfce7)",
+    minHeight: "100vh",
+    animation: "fadeIn 1s ease",
+  },
+  card: {
+    background: "#ffffff",
+    padding: "40px",
+    borderRadius: "16px",
+    maxWidth: "600px",
+    width: "100%",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+    animation: "slideUp 0.8s ease",
+  },
+  heading: {
+    marginBottom: "25px",
+    textAlign: "center",
+    fontSize: "26px",
+    color: "#15803d",
+    fontWeight: "700",
+  },
+  input: {
+    width: "100%",
+    padding: "12px 16px",
+    marginBottom: "15px",
+    border: "1px solid #d1d5db",
+    borderRadius: "8px",
+    fontSize: "15px",
+    outline: "none",
+    transition: "border 0.3s ease",
+  },
+  fileInput: {
+    marginBottom: "20px",
+  },
+  button: {
+    width: "100%",
+    padding: "12px",
+    backgroundColor: "#22c55e",
+    color: "#fff",
+    fontWeight: "600",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+    fontSize: "16px",
+  },
+};
+
+// Keyframe animations
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+`, styleSheet.cssRules.length);
+styleSheet.insertRule(`
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+`, styleSheet.cssRules.length);
 
 export default AddProduct;

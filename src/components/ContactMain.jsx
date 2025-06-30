@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
-
 const ContactMain = () => {
   const locations = [
     {
@@ -29,7 +28,7 @@ const ContactMain = () => {
           padding: '100px 0',
           textAlign: 'center',
           color: '#fff',
-          animation: 'fadeIn 1.2s ease-in-out',
+          animation: 'fadeInUp 1.2s ease forwards',
         }}
       >
         <div className="container">
@@ -41,7 +40,7 @@ const ContactMain = () => {
       </div>
 
       {/* Contact Info & Map */}
-      <div className="py-5 bg-light">
+      <div className="py-5 bg-light" style={{ animation: 'fadeInUp 1.4s ease forwards' }}>
         <div className="container">
           <div className="row g-5">
             {/* Left Info */}
@@ -55,7 +54,15 @@ const ContactMain = () => {
                 <div
                   key={idx}
                   className="p-4 rounded shadow-sm bg-white mb-4 hover-scale-card"
-                  style={{ transition: 'transform 0.3s ease' }}
+                  style={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(40, 167, 69, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.1)';
+                  }}
                 >
                   <h5 className="text-success fw-bold mb-2">
                     <FaMapMarkerAlt className="me-2 text-muted" /> {loc.title}
@@ -63,11 +70,15 @@ const ContactMain = () => {
                   <p className="text-muted small mb-1">{loc.address}</p>
                   <p className="small mb-1">
                     <FaPhoneAlt className="me-2 text-success" />{' '}
-                    <a href={`tel:${loc.phone}`} className="text-primary text-decoration-none">{loc.phone}</a>
+                    <a href={`tel:${loc.phone}`} className="text-primary text-decoration-none">
+                      {loc.phone}
+                    </a>
                   </p>
                   <p className="small mb-0">
                     <FaEnvelope className="me-2 text-success" />{' '}
-                    <a href={`mailto:${loc.email}`} className="text-dark text-decoration-none">{loc.email}</a>
+                    <a href={`mailto:${loc.email}`} className="text-dark text-decoration-none">
+                      {loc.email}
+                    </a>
                   </p>
                 </div>
               ))}
@@ -83,6 +94,7 @@ const ContactMain = () => {
                   border: '4px solid #28a745',
                   borderRadius: '12px',
                   boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+                  animation: 'fadeInUp 1.6s ease forwards',
                 }}
                 allowFullScreen=""
                 loading="lazy"
@@ -94,7 +106,7 @@ const ContactMain = () => {
       </div>
 
       {/* Contact Form */}
-      <div className="pb-5">
+      <div className="pb-5" style={{ animation: 'fadeInUp 1.8s ease forwards' }}>
         <div className="container">
           <div className="bg-white rounded p-5 shadow-sm">
             <div className="row align-items-center">
@@ -166,7 +178,7 @@ const ContactMain = () => {
                     transform: 'scale(1)',
                     transition: 'transform 0.3s ease',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
                   onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 />
               </div>
@@ -174,6 +186,31 @@ const ContactMain = () => {
           </div>
         </div>
       </div>
+
+      {/* Animations CSS */}
+      <style>{`
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .hover-scale-card {
+          box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+        }
+
+        .hover-scale-card:hover {
+          transform: scale(1.05);
+          box-shadow: 0 12px 30px rgba(40, 167, 69, 0.3);
+        }
+      `}</style>
     </div>
   );
 };
@@ -185,14 +222,16 @@ const inputStyle = {
   borderRadius: '6px',
   fontSize: '15px',
   width: '100%',
-  transition: 'border-color 0.3s ease',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
 };
 
 function handleFocus(e) {
   e.target.style.borderColor = '#28a745';
+  e.target.style.boxShadow = '0 0 5px #28a745';
 }
 function handleBlur(e) {
   e.target.style.borderColor = '#ccc';
+  e.target.style.boxShadow = 'none';
 }
 
 export default ContactMain;

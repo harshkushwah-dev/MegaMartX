@@ -51,7 +51,7 @@ const HeaderTop = () => {
         <div className="d-flex justify-content-between align-items-center flex-wrap">
           {/* Left Section */}
           <div className="d-flex align-items-center" style={{ flex: 1, minWidth: '250px' }}>
-            <div className="d-block" style={{ width: '60%' }}>
+            <div className="d-block" style={{ width: '50%' }}>
               <marquee scrollamount="3">
                 FREE delivery & 40% Discount for next 3 orders! | Limited time offer! | Extra 10% off on 3rd order!
               </marquee>
@@ -84,7 +84,7 @@ const HeaderTop = () => {
             <p className="m-0" style={{ color: '#fff' }}>
               Call Us:{' '}
               <a href="tel:+4733378901" style={{ color: '#fff', textDecoration: 'underline' }}>
-                +258 3268 21485
+                +91 88791 45630
               </a>
             </p>
 

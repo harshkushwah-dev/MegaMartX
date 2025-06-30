@@ -110,12 +110,14 @@ const TopTrendingProducts = () => {
                   style={{ transition: 'transform 0.3s', background: '#fff' }}
                 >
                   <div className="position-relative overflow-hidden" style={{ height: '200px' }}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-100 h-100"
-                      style={{ objectFit: 'cover' }}
-                    />
+                    <div className="position-relative overflow-hidden" style={{ height: '200px' }}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-100 h-100"
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </div>
                   </div>
                   <div className="card-body d-flex flex-column p-3">
                     <h5 className="fw-semibold mb-1" style={{ fontSize: '18px', color: '#333' }}>
@@ -129,7 +131,7 @@ const TopTrendingProducts = () => {
                     <button
                       className="btn btn-success mt-auto px-3 py-2 rounded-pill"
                       onClick={() => handleAddToCart(product)}
-                      style={{ fontSize: '15px', backgroundColor:'#28a745' }}
+                      style={{ fontSize: '15px', backgroundColor: '#28a745' }}
                     >
                       <i className="fa fa-shopping-cart me-1"></i> Add to Cart
                     </button>
