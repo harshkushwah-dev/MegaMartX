@@ -26,7 +26,7 @@ const HeaderTop = () => {
 
   const menuLinks = [
     { label: 'Home', route: '/' },
-    { label: 'Shop', route: '/shop' },
+    { label: 'Account', route: '/account' },
     { label: 'About', route: '/about' },
     { label: 'Contact', route: '/contact' },
     { label: 'Vendor', route: '/vendor' },

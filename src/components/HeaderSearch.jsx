@@ -3,6 +3,36 @@ import Typed from 'typed.js';
 import { Link } from 'react-router-dom';
 import logo from '../assets/Shop_Logo.png';
 import { useCart } from "../context/CartContext";
+import { motion } from 'framer-motion';
+
+const iconItems = [
+  { to: '/compare', icon: 'fa-code-compare', label: 'Compare' },
+  { to: '/login', icon: 'fa-right-to-bracket', label: 'Login', login: true },
+  { to: '/account', icon: 'fa-user', label: 'Account' },
+  { to: '/wishlist', icon: 'fa-heart', label: 'Wishlist' },
+  { to: '/cart', icon: 'fa-cart-shopping', label: 'Cart' },
+];
+
+const btnStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+  padding: '10px 16px',
+  borderRadius: '8px',
+  border: '1px solid #ddd',
+  backgroundColor: '#fff',
+  color: '#333',
+  textDecoration: 'none',
+  fontWeight: 500,
+  boxShadow: '0 3px 10px rgba(0, 0, 0, 0.06)',
+};
+
+const btnHoverStyle = {
+  backgroundColor: '#f0fdf4',
+  borderColor: '#28a745',
+  color: '#28a745',
+  boxShadow: '0 4px 12px rgba(40, 167, 69, 0.15)',
+};
 
 export const HeaderSearch = () => {
   const inputRef = useRef(null);
@@ -251,75 +281,61 @@ export const HeaderSearch = () => {
 
             {/* Account / Wishlist / Cart */}
             <div
-              className="accont-wishlist-cart-area-header d-flex flex-wrap align-items-center justify-content-end"
-              style={{
-                gap: '10px',
-                flex: '1 1 auto',
-              }}
+              className="d-flex flex-wrap justify-content-end align-items-center"
+              style={{ gap: '12px', flex: '1 1 auto' }}
             >
-              {/* Compare */}
-              <Link to="/shop-compare" style={btnBaseStyle} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                <i className="fa-solid fa-code-compare fs-5"></i>
-                <span>Compare</span>
-              </Link>
-
-              {/* Login */}
-              <Link
-                to="/login"
-                style={{ ...btnBaseStyle, backgroundColor: '#f9f9f9', color: '#333', borderColor: 'transparent' }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.backgroundColor = '#28a745';
-                  e.currentTarget.style.color = '#fff';
-                  e.currentTarget.style.transform = 'scale(1.03)';
-                  e.currentTarget.style.borderColor = '#28a745';
-                  e.currentTarget.style.boxShadow = '0 4px 10px rgba(40, 167, 69, 0.3)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = '#f9f9f9';
-                  e.currentTarget.style.color = '#333';
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.borderColor = 'transparent';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <i className="fa-solid fa-right-to-bracket fs-5"></i>
-                <span>Login</span>
-              </Link>
-
-              {/* Account */}
-              <Link to="/account" style={btnBaseStyle} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                <i className="fa-regular fa-user fs-5"></i>
-                <span>Account</span>
-              </Link>
-
-              {/* Wishlist */}
-              <Link to="/wishlist" style={btnBaseStyle} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                <i className="fa-regular fa-heart fs-5"></i>
-                <span>Wishlist</span>
-              </Link>
-
-              {/* Cart */}
-              <Link to="/cart" style={{ ...btnBaseStyle, position: 'relative' }} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                <i className="fa-solid fa-cart-shopping fs-5"></i>
-                <span>Cart</span>
-                {cartCount > 0 && (
-                  <span
+              {iconItems.map((item, i) => (
+                <motion.div key={i} style={{ position: 'relative' }}>
+                  <Link
+                    to={item.to}
                     style={{
-                      position: 'absolute',
-                      top: '-5px',
-                      right: '-5px',
-                      backgroundColor: '#dc3545',
-                      color: '#fff',
-                      borderRadius: '50%',
-                      padding: '2px 6px',
-                      fontSize: '10px',
+                      ...btnStyle,
+                      ...(item.login && {
+                        backgroundColor: '#f9f9f9',
+                        border: '1px solid #ccc',
+                      }),
+                    }}
+                    onMouseEnter={(e) => {
+                      Object.assign(e.currentTarget.style, btnHoverStyle);
+                    }}
+                    onMouseLeave={(e) => {
+                      Object.assign(e.currentTarget.style, {
+                        backgroundColor: item.login ? '#f9f9f9' : '#fff',
+                        color: '#333',
+                        boxShadow: '0 3px 10px rgba(0, 0, 0, 0.06)',
+                        borderColor: '#ddd',
+                      });
                     }}
                   >
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
+                    <i className={`fas ${item.icon} fs-5`}></i>
+                    <span>{item.label}</span>
+                  </Link>
+
+                  {/* Cart badge */}
+                  {item.label === 'Cart' && cartCount > 0 && (
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                      style={{
+                        position: 'absolute',
+                        top: '-5px',
+                        right: '-5px',
+                        backgroundColor: '#dc3545',
+                        color: '#fff',
+                        borderRadius: '50%',
+                        padding: '2px 6px',
+                        fontSize: '10px',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {cartCount}
+                    </motion.span>
+                  )}
+                </motion.div>
+              ))}
             </div>
+
 
           </div>
         </div>

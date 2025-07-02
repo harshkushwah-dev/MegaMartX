@@ -10,7 +10,7 @@ const AccountPage = () => {
     phone: "+91 98765 43210",
     gender: "Male",
     birthday: "10 March 1999",
-    avatar: "https://i.pravatar.cc/100?u=harsh",
+    avatar: "https://imgs.search.brave.com/p7wTkIvslowa-wWgv34Zn5V---LR8tmCew0m1JcolWI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAzLzQ2LzgzLzk2/LzM2MF9GXzM0Njgz/OTY4M182bkFQemJo/cFNrSXBiOHBtQXd1/ZmtDN2M1ZUQ3d1l3/cy5qcGc",
   };
 
   const sections = [
@@ -129,7 +129,7 @@ const AccountPage = () => {
             <div style={{
               marginTop: "35px",
               padding: "20px 25px",
-              borderLeft: "5px solid #68a533",
+              borderLeft: "5px solid #28a745",
               backgroundColor: "#f0f9eb",
               borderRadius: "12px",
               fontSize: "15px",
@@ -160,7 +160,7 @@ const AccountPage = () => {
               </div>
               <button
                 style={{
-                  background: "#68a533",
+                  background: "#28a745",
                   color: "#fff",
                   border: "none",
                   borderRadius: "8px",
@@ -170,7 +170,7 @@ const AccountPage = () => {
                   transition: "0.3s"
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.background = "#558d2a"}
-                onMouseLeave={(e) => e.currentTarget.style.background = "#68a533"}
+                onMouseLeave={(e) => e.currentTarget.style.background = "#28a745"}
               >
                 View Rewards
               </button>
@@ -222,7 +222,7 @@ const AccountPage = () => {
               borderRadius: "10px",
               fontSize: "14.5px",
               color: "#444",
-              borderLeft: "4px solid #68a533",
+              borderLeft: "4px solid #28a745",
               animation: "fadeSlide 1.1s ease-in-out"
             }}>
               Need help? Contact our support team at <strong>+91 98860 21458</strong> or email <strong>bangalore@megamartx.com</strong>
@@ -299,7 +299,7 @@ const AccountPage = () => {
                       <td style={td}>{item.name}</td>
                       <td style={td}>{item.size}</td>
                       <td style={td}>₹{item.regularPrice}</td>
-                      <td style={{ ...td, color: "#68a533", fontWeight: "bold" }}>
+                      <td style={{ ...td, color: "#28a745", fontWeight: "bold" }}>
                         ₹{item.salePrice}
                       </td>
                       <td style={td}>{item.stock}</td>
@@ -328,44 +328,42 @@ const AccountPage = () => {
           </>
         );
 
-   case "Track Your Order":
-  const currentStepIndex = 4; // Example: 0-based index (4 = "Out for Delivery")
+      case "Track Your Order":
+        const currentStepIndex = 4; // Example: 0-based index (4 = "Out for Delivery")
 
-  const trackSteps = [
-    "Order Placed",
-    "Order Confirmed",
-    "Packed",
-    "Shipped",
-    "Out for Delivery",
-    "Expected Delivery (July 1, 2025)",
-  ];
+        const trackSteps = [
+          "Order Placed",
+          "Order Confirmed",
+          "Packed",
+          "Shipped",
+          "Out for Delivery",
+          "Expected Delivery (July 1, 2025)",
+        ];
 
-  return (
-    <>
-      <h2 style={heading}>Track Your Order</h2>
-      <div style={{ marginTop: "30px" }}>
-        <div className="timeline-wrapper">
-          {trackSteps.map((step, index) => (
-            <div className="timeline-item" key={index}>
-              <div
-                className={`timeline-dot ${index < currentStepIndex ? "completed" : ""} ${
-                  index === currentStepIndex ? "current" : ""
-                }`}
-              />
-              {index !== trackSteps.length - 1 && (
-                <div
-                  className={`timeline-line ${
-                    index < currentStepIndex ? "line-completed" : ""
-                  }`}
-                />
-              )}
-              <div className="timeline-text">{step}</div>
-            </div>
-          ))}
-        </div>
+        return (
+          <>
+            <h2 style={heading}>Track Your Order</h2>
+            <div style={{ marginTop: "30px" }}>
+              <div className="timeline-wrapper">
+                {trackSteps.map((step, index) => (
+                  <div className="timeline-item" key={index}>
+                    <div
+                      className={`timeline-dot ${index < currentStepIndex ? "completed" : ""} ${index === currentStepIndex ? "current" : ""
+                        }`}
+                    />
+                    {index !== trackSteps.length - 1 && (
+                      <div
+                        className={`timeline-line ${index < currentStepIndex ? "line-completed" : ""
+                          }`}
+                      />
+                    )}
+                    <div className="timeline-text">{step}</div>
+                  </div>
+                ))}
+              </div>
 
-        {/* Timeline Styles */}
-        <style>{`
+              {/* Timeline Styles */}
+              <style>{`
           .timeline-wrapper {
             position: relative;
             margin-left: 40px;
@@ -393,12 +391,12 @@ const AccountPage = () => {
           }
 
           .timeline-dot.completed {
-            background-color: #68a533;
+            background-color: #28a745;
             box-shadow: 0 0 0 4px rgba(104, 165, 51, 0.15);
           }
 
           .timeline-dot.current {
-            background-color: #68a533;
+            background-color: #28a745;
             transform: scale(1.2);
             box-shadow: 0 0 10px rgba(104, 165, 51, 0.3);
           }
@@ -415,7 +413,7 @@ const AccountPage = () => {
           }
 
           .timeline-line.line-completed {
-            background-color: #68a533;
+            background-color: #28a745;
           }
 
           .timeline-text {
@@ -435,9 +433,9 @@ const AccountPage = () => {
             }
           }
         `}</style>
-      </div>
-    </>
-  );
+            </div>
+          </>
+        );
 
       case "My Address":
         return (
@@ -450,7 +448,7 @@ const AccountPage = () => {
                 borderRadius: "14px",
                 backgroundColor: "#f9f9f9",
                 boxShadow: "0 6px 18px rgba(0,0,0,0.05)",
-                borderLeft: "5px solid #68a533",
+                borderLeft: "5px solid #28a745",
                 color: "#333",
                 fontSize: "15.5px",
                 lineHeight: "1.8",
@@ -498,28 +496,28 @@ const AccountPage = () => {
           </>
         );
 
-case "Account Details":
-  return (
-    <>
-      <h2 style={heading}>Account Details</h2>
-      <div className="account-details-container">
-        <img
-          src={user.avatar}
-          alt="user"
-          className="account-avatar"
-        />
-        <div className="account-info-grid">
-          <div><strong>First Name:</strong> {user.firstName}</div>
-          <div><strong>Last Name:</strong> {user.lastName}</div>
-          <div><strong>Email Address:</strong> {user.email}</div>
-          <div><strong>Phone:</strong> {user.phone}</div>
-          <div><strong>Gender:</strong> {user.gender}</div>
-          <div><strong>Birthday:</strong> {user.birthday}</div>
-          <div><strong>Password:</strong> <span style={{ letterSpacing: "3px" }}>••••••••</span></div>
-        </div>
-      </div>
+      case "Account Details":
+        return (
+          <>
+            <h2 style={heading}>Account Details</h2>
+            <div className="account-details-container">
+              <img
+                src={user.avatar}
+                alt="user"
+                className="account-avatar"
+              />
+              <div className="account-info-grid">
+                <div><strong>First Name:</strong> {user.firstName}</div>
+                <div><strong>Last Name:</strong> {user.lastName}</div>
+                <div><strong>Email Address:</strong> {user.email}</div>
+                <div><strong>Phone:</strong> {user.phone}</div>
+                <div><strong>Gender:</strong> {user.gender}</div>
+                <div><strong>Birthday:</strong> {user.birthday}</div>
+                <div><strong>Password:</strong> <span style={{ letterSpacing: "3px" }}>••••••••</span></div>
+              </div>
+            </div>
 
-      <style>{`
+            <style>{`
         @keyframes fadeInCard {
           0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
@@ -549,7 +547,7 @@ case "Account Details":
           height: 140px;
           border-radius: 50%;
           object-fit: cover;
-          border: 5px solid #68a533;
+          border: 5px solid #28a745;
           box-shadow: 0 4px 12px rgba(104,165,51,0.3);
           transition: transform 0.3s ease;
         }
@@ -579,26 +577,26 @@ case "Account Details":
           }
         }
       `}</style>
-    </>
-  );
+          </>
+        );
 
-     case "Log Out":
-  // Simulate logout: clear auth (e.g. localStorage) and reload or redirect
-  setTimeout(() => {
-    localStorage.clear(); // clear user data if stored
-    sessionStorage.clear();
-    window.location.href = "/"; // redirect to homepage or login
-  }, 1500); // slight delay for animation
+      case "Log Out":
+        // Simulate logout: clear auth (e.g. localStorage) and reload or redirect
+        setTimeout(() => {
+          localStorage.clear(); // clear user data if stored
+          sessionStorage.clear();
+          window.location.href = "/"; // redirect to homepage or login
+        }, 1500); // slight delay for animation
 
-  return (
-    <>
-      <div className="logout-message">
-        <h2>Logging Out...</h2>
-        <p>We’re safely signing you out of your account. Please wait.</p>
-        <div className="spinner" />
-      </div>
+        return (
+          <>
+            <div className="logout-message">
+              <h2>Logging Out...</h2>
+              <p>We’re safely signing you out of your account. Please wait.</p>
+              <div className="spinner" />
+            </div>
 
-      <style>{`
+            <style>{`
         .logout-message {
           animation: fadeOutUp 0.5s ease forwards;
           padding: 40px;
@@ -609,7 +607,7 @@ case "Account Details":
         }
 
         .logout-message h2 {
-          color: #68a533;
+          color: #28a745;
           margin-bottom: 10px;
         }
 
@@ -624,7 +622,7 @@ case "Account Details":
           width: 40px;
           height: 40px;
           border: 4px solid #e0e0e0;
-          border-top: 4px solid #68a533;
+          border-top: 4px solid #28a745;
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
@@ -644,8 +642,8 @@ case "Account Details":
           }
         }
       `}</style>
-    </>
-  );
+          </>
+        );
 
     }
   };
@@ -667,7 +665,7 @@ case "Account Details":
     padding: "12px 16px",
     border: "1px solid #ddd",
     borderRadius: "6px",
-    backgroundColor: isActive ? "#68a533" : "#fff",
+    backgroundColor: isActive ? "#28a745" : "#fff",
     color: isActive ? "#fff" : "#333",
     marginBottom: "10px",
     fontSize: "16px",

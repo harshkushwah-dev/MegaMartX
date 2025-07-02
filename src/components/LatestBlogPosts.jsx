@@ -174,13 +174,13 @@ const LatestBlogPosts = () => {
 
           {[
             {
-              img: "https://t4.ftcdn.net/jpg/01/98/07/88/240_F_198078891_huKEsoJtv1RmwPOh0hH8k1blBS6A7BvP.jpg",
+              img: "https://imgs.search.brave.com/GSpzQyxcOHDDW1fUCU5PFT6oATOenxGxj6dWX6gU7e4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vZXJpY2Fi/YWxsc3R5bGUuY29t/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDIx/LzA4L2hvbWUtaGVy/by0xLnBuZz9yZXNp/emU9MTAyNCw0ODEm/c3NsPTE",
               title: "Top Tips for Styling with Confidence in 2024",
               link: "/blog/top-tips-for-styling-with-confidence-2024",
               desc: "Discover how to elevate your fashion game with our expert tips tailored for 2024 trends."
             },
             {
-              img: "https://t3.ftcdn.net/jpg/05/60/88/77/240_F_560887703_2eyFbMHo1hh5MbZ7I6Bevqp4kXc1dnA6.jpg",
+              img: "https://imgs.search.brave.com/YYWh8dT-RjwSrT2OcxuzRFyWLXn1Jo9XLs0JIhqAhyA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L3do/b3doYXR3ZWFyL3Bv/c3RzLzI4NzI4NC9u/YXR1cmFsLXNraW5j/YXJlLXJvdXRpbmUt/Mjg3Mjg0LTE1ODk1/ODI4MDk0MjYtbWFp/bi5naWY.jpeg",
               title: "The Best Organic Skincare Routines",
               link: "/blog/the-best-organic-skincare-routines",
               desc: "Your skin deserves the best. Learn how to switch to natural and organic skincare routines."

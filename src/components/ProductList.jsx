@@ -4,10 +4,9 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import sampleProducts from '../data/sampleProducts'; // Make sure it's a default export
+import sampleProducts from '../data/sampleProducts'; 
 
 export const ProductList = () => {
-  // Get one unique product per category
   const uniqueCategoryProducts = Object.values(
     sampleProducts.reduce((acc, product) => {
       if (!acc[product.category]) acc[product.category] = product;
@@ -30,10 +29,9 @@ export const ProductList = () => {
         </h2>
 
         <Swiper
-          modules={[Navigation, Autoplay]}
+          modules={[Autoplay]}
           spaceBetween={16}
           loop={true}
-          navigation
           autoplay={{ delay: 2500, disableOnInteraction: false }}
           slidesPerView={2}
           breakpoints={{
@@ -42,6 +40,7 @@ export const ProductList = () => {
             1024: { slidesPerView: 6 },
           }}
         >
+
           {uniqueCategoryProducts.map((product) => (
             <SwiperSlide key={product._id}>
               <div

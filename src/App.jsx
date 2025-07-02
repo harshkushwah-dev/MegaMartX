@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import HeaderTop from './components/HeaderTop';
 import { HeaderMiddle } from './components/HeaderMiddle';
 import { HeaderSearch } from './components/HeaderSearch';
@@ -27,10 +26,12 @@ import BlogMain from './components/BlogMain';
 import ContactMain from './components/ContactMain';
 import AccountPage from './components/AccountPage';
 import { CartProvider } from './context/CartContext';
-import Cart from './components/Cart'; // ✅ Add this at the top
+import Cart from './components/Cart';
 import { WishlistProvider } from './context/WishlistContext';
 import Wishlist from './components/Wishlist';
-import {Login} from './components/Login';
+import { Login } from './components/Login';
+import ShopCompare from './components/ShopCompare';
+import TrackOrder from './components/TrackOrder';
 
 
 function App() {
@@ -58,7 +59,6 @@ function App() {
               </>
             } />
 
-            {/* About Page */}
             <Route path="/about" element={
               <>
                 <HeaderTop />
@@ -68,8 +68,6 @@ function App() {
                 <Footer />
               </>
             } />
-
-            {/* Account Page (fixed typo) */}
             <Route path="/account" element={
               <>
                 <HeaderTop />
@@ -80,7 +78,6 @@ function App() {
               </>
             } />
 
-            {/* Vendor Pages */}
             <Route path="/vendor" element={
               <>
                 <HeaderTop />
@@ -101,7 +98,6 @@ function App() {
               </>
             } />
 
-            {/* Blog Page */}
             <Route path="/blogmain" element={
               <>
                 <HeaderTop />
@@ -122,8 +118,17 @@ function App() {
               </>
             } />
 
+            <Route path="/compare" element={
+              <>
+                <HeaderTop />
+                <HeaderSearch />
+                <HeaderMiddle />
+                <ShopCompare />
+                <Footer />
+              </>
+            } />
 
-            {/* Contact Page */}
+
             <Route path="/contact" element={
               <>
                 <HeaderTop />
@@ -142,13 +147,20 @@ function App() {
                 <Footer />
               </>
             } />
+            <Route path="/trackorder" element={
+              <>
+                <HeaderTop />
+                <HeaderSearch />
+                <HeaderMiddle />
+                <TrackOrder />
+                <Footer />
+              </>
+            } />
 
             <Route path="/login" element={<Login />} />
-
-            {/* Dashboard Page */}
             <Route path="/dashboard" element={
               <DashboardLayout>
-                
+
                 <Sidebar />
                 <AddProduct />
               </DashboardLayout>

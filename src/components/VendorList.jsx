@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 // Sample vendors (15 shown here; you can extend up to 25 as needed)
 const vendorsData = [
@@ -291,7 +292,7 @@ const VendorList = () => {
                                             width: '100%',
                                         }}
                                     />
-                                    <button className="rts-btn btn-primary w-35 w-sm-auto" style={{backgroundColor:'#28a745', borderRadius:'10px', color:'#fff'}} >
+                                    <button className="rts-btn btn-primary w-35 w-sm-auto" style={{ backgroundColor: '#28a745', borderRadius: '10px', color: '#fff' }} >
                                         Search
                                     </button>
                                 </div>

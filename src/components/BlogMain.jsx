@@ -1,5 +1,12 @@
+// BlogMain.jsx
 import React from 'react';
+import { motion } from 'framer-motion';
 import LatestBlogPosts from './LatestBlogPosts';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const BlogMain = () => {
   return (
@@ -10,11 +17,20 @@ const BlogMain = () => {
       <div className="container">
         <div className="row g-5">
           {/* Sidebar */}
-          <div className="col-lg-4">
+          <motion.div
+            className="col-lg-4"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="theiaStickySidebar" style={{ position: 'sticky', top: '100px' }}>
               {/* Search Box */}
-              <div
+              <motion.div
                 className="blog-sidebar-widget"
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
                 style={{
                   marginBottom: '30px',
                   background: '#fff',
@@ -48,11 +64,13 @@ const BlogMain = () => {
                     <i className="fa fa-search"></i>
                   </button>
                 </form>
-              </div>
+              </motion.div>
 
               {/* Categories */}
-              <div
+              <motion.div
                 className="blog-sidebar-widget"
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
                 style={{
                   background: '#fff',
                   padding: '20px',
@@ -65,12 +83,9 @@ const BlogMain = () => {
                   📂 Categories
                 </h4>
                 <div className="category-main-wrapper">
-                  {[
-                    "Baking Material", "Bread and Juice", "Clothing & Beauty",
-                    "Fresh Vegetable", "Fresh Seafood", "Milks and Daires", "Wine & Drinks"
-                  ].map((category, i) => (
+                  {["Baking Material", "Bread and Juice", "Clothing & Beauty",
+                    "Fresh Vegetable", "Fresh Seafood", "Milks and Daires", "Wine & Drinks"].map((category, i) => (
                     <div
-                      className="single-category-area"
                       key={i}
                       style={{
                         padding: '10px 0',
@@ -78,7 +93,7 @@ const BlogMain = () => {
                         cursor: 'pointer',
                         fontSize: '15px',
                         color: '#333',
-                        transition: 'color 0.2s',
+                        transition: 'color 0.3s ease',
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = '#28a745')}
                       onMouseLeave={(e) => (e.currentTarget.style.color = '#333')}
@@ -87,11 +102,13 @@ const BlogMain = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Tags */}
-              <div
+              <motion.div
                 className="blog-sidebar-widget"
+                variants={fadeInUp}
+                transition={{ duration: 0.7 }}
                 style={{
                   background: '#fff',
                   padding: '20px',
@@ -101,12 +118,9 @@ const BlogMain = () => {
                 }}
               >
                 <h4 className="title" style={{ fontSize: '18px', marginBottom: '20px' }}>
-                  🏷️ Tags
+                  🍿 Tags
                 </h4>
-                <div
-                  className="tags-area"
-                  style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}
-                >
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   {["Shampoo", "Butter", "Birthday", "Gifts", "Facial", "Green", "Lotion", "Scrub"].map((tag, i) => (
                     <span
                       key={i}
@@ -117,7 +131,7 @@ const BlogMain = () => {
                         fontSize: '13px',
                         cursor: 'pointer',
                         backgroundColor: '#fff',
-                        transition: 'all 0.2s ease',
+                        transition: 'all 0.3s ease',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = '#28a745';
@@ -134,11 +148,16 @@ const BlogMain = () => {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Banner */}
-              <div
+              <motion.div
                 className="blog-sidebar-widget"
+                variants={fadeInUp}
+                transition={{ duration: 0.8 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 style={{
                   backgroundImage: `url(https://ekomart-nextjs.vercel.app/assets/images/blog/thumb/12.jpg)`,
                   backgroundSize: 'cover',
@@ -151,7 +170,13 @@ const BlogMain = () => {
                   boxShadow: '0 4px 16px rgba(0,0,0,0.05)',
                 }}
               >
-                <span style={{ fontSize: '14px', opacity: 0.9 }}>🔥 Weekend Discount</span>
+                <motion.span
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  style={{ fontSize: '14px', display: 'inline-block' }}
+                >
+                  🔥 Weekend Discount
+                </motion.span>
                 <h5 style={{ fontSize: '20px', margin: '10px 0' }}>
                   Discover Real Organic <br />
                   <strong>Flavors Vegetable</strong>
@@ -171,14 +196,21 @@ const BlogMain = () => {
                 >
                   Shop Now <i className="fa fa-plus" style={{ marginLeft: '6px' }}></i>
                 </a>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Main Blog Posts */}
-          <div className="col-lg-8">
+          <motion.div
+            className="col-lg-8"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <LatestBlogPosts />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

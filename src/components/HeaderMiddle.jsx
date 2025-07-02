@@ -79,7 +79,7 @@ export const HeaderMiddle = () => {
                 </ul>
               </li>
 
-              <li><a className="text-white fw-semibold text-decoration-none" href="/trackorder">Track Order</a></li>
+              <li><Link className="text-white fw-semibold text-decoration-none" to="/trackorder">Track Order</Link></li>
               <li className="d-none d-md-block" style={{ paddingLeft: '15px', borderLeft: '1px solid #fff' }}>
                 <span className="text-white" style={{ fontSize: '14px', fontWeight: '400' }}>
                   Delivery every day 7:00 AM – 10:00 PM
@@ -96,7 +96,7 @@ export const HeaderMiddle = () => {
                   </button>
                   <ul className="dropdown-menu dropdown-menu-end">
                     <li><Link className="dropdown-item" to="/">Home</Link></li>
-                    <li><Link className="dropdown-item" to="/about">About</Link></li>
+                   
                     <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
                     <li><Link className="dropdown-item" to="/vendor">Vendors</Link></li>
                     <li><Link className="dropdown-item" to="/blogmain">Blog</Link></li>
@@ -108,14 +108,14 @@ export const HeaderMiddle = () => {
                   <ul className="d-flex flex-wrap list-unstyled gap-4 mb-0 align-items-center">
                     <li><Link className="text-white text-decoration-none" to="/">Home</Link></li>
                     <li><Link className="text-white text-decoration-none" to="/about">About</Link></li>
-                    <li className="dropdown hover-dropdown">
+                    {/* <li className="dropdown hover-dropdown">
                       <a className="text-white dropdown-toggle text-decoration-none" href="#">Shop</a>
                       <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="/shop">Shop Grid</a></li>
                         <li><a className="dropdown-item" href="/shop-list-sidebar">List Sidebar</a></li>
                         <li><a className="dropdown-item" href="/shop-grid-top-filter">Top Filter Grid</a></li>
                       </ul>
-                    </li>
+                    </li> */}
                     <li className="dropdown hover-dropdown">
                       <a className="text-white dropdown-toggle text-decoration-none" href="#">Vendors</a>
                       <ul className="dropdown-menu">

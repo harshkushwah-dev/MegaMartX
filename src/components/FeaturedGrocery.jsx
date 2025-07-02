@@ -3,13 +3,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import sampleProducts from '../data/sampleProducts';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 
 const FeaturedGrocery = () => {
   const { addToCart } = useCart();
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist(); // ✅ Correctly inside the component
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [quantities, setQuantities] = useState({});
 
   const uniqueCategoryProducts = Object.values(
     sampleProducts.reduce((acc, product) => {
@@ -18,24 +21,17 @@ const FeaturedGrocery = () => {
     }, {})
   );
 
-  const [quantities, setQuantities] = useState(
-    sampleProducts.reduce((acc, product) => {
-      acc[product._id] = 1;
-      return acc;
-    }, {})
-  );
-
-  const increment = id => {
-    setQuantities(prev => ({ ...prev, [id]: prev[id] + 1 }));
-  };
-
-  const decrement = id => {
-    setQuantities(prev => ({ ...prev, [id]: Math.max(1, prev[id] - 1) }));
-  };
+  const increment = id => setQuantities(prev => ({ ...prev, [id]: (prev[id] || 1) + 1 }));
+  const decrement = id => setQuantities(prev => ({ ...prev, [id]: Math.max(1, (prev[id] || 1) - 1) }));
 
   return (
-    <div className="rts-grocery-feature-area rts-section-gapBottom" style={{ padding: '40px 20px' }}>
+    <div style={{ padding: '40px 20px' }}>
       <style>{`
+
+      .swiper-button-next, .swiper-button-prev {
+  display: none;
+}
+
         .swiper-button-next, .swiper-button-prev {
           color: #27ae60;
           background-color: white;
@@ -44,193 +40,183 @@ const FeaturedGrocery = () => {
           height: 40px;
           border-radius: 50%;
           top: 35%;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-          display:none;
+          display: none;
         }
-        .swiper-button-next:hover, .swiper-button-prev:hover {
-          background-color: #27ae60;
-          color: white;
-        }
-        @media (max-width: 768px) {
-          .featured-header {
-            flex-direction: column;
-            align-items: flex-start;
-          }
+        @media (min-width: 769px) {
           .swiper-button-next, .swiper-button-prev {
-            display: none;
+            display: block;
           }
         }
       `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div className="featured-header" style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '20px',
-          flexWrap: 'wrap',
-          gap: '10px'
-        }}>
-          <h1 style={{ fontSize: '24px' }}>Featured Grocery</h1>
-        </div>
+        <h1 style={{ fontSize: '24px', marginBottom: '20px' }}>Featured Grocery</h1>
 
         <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={20}
-          navigation
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          loop={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 }
-          }}
-        >
+  modules={[Autoplay]}
+  spaceBetween={20}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  loop={true}
+  breakpoints={{
+    320: { slidesPerView: 1 },
+    640: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+    1280: { slidesPerView: 4 }
+  }}
+>
+
           {uniqueCategoryProducts.map(product => (
             <SwiperSlide key={product._id}>
-              <div className="product-card" style={{
+              <div style={{
                 background: '#fff',
                 borderRadius: '12px',
                 padding: '15px',
                 border: '1px solid #e0e0e0',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
-                position: 'relative',
-                height: '100%',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-              }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.12)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
-                }}
-              >
-                {/* Discount Tag */}
-                <div style={{
-                  position: 'absolute',
-                  top: '10px',
-                  left: '10px',
-                  backgroundColor: '#e74c3c',
-                  color: '#fff',
-                  padding: '4px 6px',
-                  borderRadius: '4px',
-                  fontSize: '12px',
-                  zIndex: 2
-                }}>
-                  {Math.floor(((product.regularPrice - product.salePrice) / product.regularPrice) * 100)}% Off
+              }}>
+                <div style={{ cursor: 'pointer' }} onClick={() => setSelectedProduct(product)}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{ width: '100%', height: '180px', objectFit: 'contain', marginBottom: '15px' }}
+                  />
                 </div>
-
-                {/* Image */}
-                <div style={{
-                  width: '100%',
-                  height: '200px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  marginBottom: '15px'
-                }}>
-                  <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </div>
-
-                {/* Info */}
-                <div style={{ textAlign: 'left' }}>
-                  <h4 style={{ fontSize: '16px', margin: '0 0 5px' }}>{product.name}</h4>
-                  <span style={{ fontSize: '13px', color: '#555' }}>{product.size}</span>
-                  <div style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontWeight: 'bold', color: '#27ae60', fontSize: '16px' }}>₹{product.salePrice}</span>
-                    <span style={{ textDecoration: 'line-through', color: '#aaa', fontSize: '14px' }}>₹{product.regularPrice}</span>
+                <h4>{product.name}</h4>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
+                  <div>
+                    <span style={{ color: '#27ae60', fontWeight: 'bold' }}>₹{product.salePrice}</span>
+                    <span style={{ textDecoration: 'line-through', marginLeft: '8px', color: '#888' }}>₹{product.regularPrice}</span>
                   </div>
-                </div>
-
-                {/* Quantity + Add to Cart */}
-                <div style={{ marginTop: '20px' }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '10px',
-                    flexWrap: 'wrap'
+                  <button onClick={() => addToCart(product, 1)} style={{
+                    padding: '6px 12px',
+                    background: '#28a745',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer'
                   }}>
-                    {/* Quantity */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      border: '1px solid #ccc',
-                      borderRadius: '5px',
-                      overflow: 'hidden'
-                    }}>
-                      <button onClick={() => decrement(product._id)} style={{
-                        padding: '6px 10px',
-                        border: 'none',
-                        background: '#f0f0f0',
-                        cursor: 'pointer',
-                        fontSize: '16px'
-                      }}>−</button>
-                      <input type="text" value={quantities[product._id]} readOnly style={{
-                        width: '40px',
-                        textAlign: 'center',
-                        border: 'none',
-                        outline: 'none',
-                        fontSize: '14px'
-                      }} />
-                      <button onClick={() => increment(product._id)} style={{
-                        padding: '6px 10px',
-                        border: 'none',
-                        background: '#f0f0f0',
-                        cursor: 'pointer',
-                        fontSize: '16px'
-                      }}>+</button>
-                    </div>
-
-                    {/* Add to Cart */}
-                    <button
-                      onClick={() => addToCart(product, quantities[product._id])}
-                      style={{
-                        flex: 1,
-                        backgroundColor: "#28a745",
-                        color: "#fff",
-                        border: "none",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <i className="fa fa-shopping-cart"></i> Add to Cart
-                    </button>
-
-                    {/* Wishlist Button */}
-                    {/* <button
-                      onClick={() =>
-                        isInWishlist(product._id)
-                          ? removeFromWishlist(product._id)
-                          : addToWishlist(product)
-                      }
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        fontSize: '20px',
-                        cursor: 'pointer',
-                        color: isInWishlist(product._id) ? 'red' : '#aaa',
-                      }}
-                    >
-                      {isInWishlist(product._id) ? '💖' : '🤍'}
-                    </button> */}
-                  </div>
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+
+      <AnimatePresence>
+        {selectedProduct && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              top: 0, left: 0,
+              width: '100vw', height: '100vh',
+              background: 'rgba(0, 0, 0, 0.6)',
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              zIndex: 1000
+            }}
+            onClick={() => setSelectedProduct(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={e => e.stopPropagation()}
+              style={{
+                background: '#fff',
+                padding: '30px',
+                borderRadius: '15px',
+                width: '90%',
+                maxWidth: '700px',
+                boxShadow: '0 5px 25px rgba(0,0,0,0.35)',
+                position: 'relative',
+                fontFamily: 'sans-serif'
+              }}
+            >
+              <button
+                onClick={() => setSelectedProduct(null)}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '15px',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: '#555'
+                }}
+              >×</button>
+              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                <img
+                  src={selectedProduct.image}
+                  alt={selectedProduct.name}
+                  style={{ flex: '1 1 250px', maxWidth: '250px', height: '250px', objectFit: 'contain', borderRadius: '10px', background: '#f9f9f9' }}
+                />
+                <div style={{ flex: '2 1 300px' }}>
+                  <h2 style={{ marginBottom: '10px', color: '#222' }}>{selectedProduct.name}</h2>
+                  <p style={{ marginBottom: '8px' }}><strong>Size:</strong> {selectedProduct.size}</p>
+                  <p style={{ marginBottom: '8px' }}><strong>Category:</strong> {selectedProduct.category}</p>
+                  <p style={{ marginBottom: '8px' }}><strong>Tag:</strong> {selectedProduct.tag}</p>
+                  <p style={{ marginBottom: '8px' }}><strong>SKU:</strong> {selectedProduct.sku}</p>
+                  <p style={{ marginBottom: '12px', color: '#555' }}>{selectedProduct.description || 'No description available.'}</p>
+                  <p style={{ fontSize: '20px', marginBottom: '10px' }}>
+                    <strong style={{ color: '#27ae60' }}>₹{selectedProduct.salePrice}</strong>
+                    <span style={{ textDecoration: 'line-through', marginLeft: '10px', color: '#aaa' }}>
+                      ₹{selectedProduct.regularPrice}
+                    </span>
+                  </p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '15px' }}>
+                    <button onClick={() => decrement(selectedProduct._id)} style={{
+                      padding: '6px 10px', border: '1px solid #ccc', borderRadius: '5px', background: '#f1f1f1', cursor: 'pointer'
+                    }}>−</button>
+                    <span style={{ minWidth: '30px', textAlign: 'center' }}>{quantities[selectedProduct._id] || 1}</span>
+                    <button onClick={() => increment(selectedProduct._id)} style={{
+                      padding: '6px 10px', border: '1px solid #ccc', borderRadius: '5px', background: '#f1f1f1', cursor: 'pointer'
+                    }}>+</button>
+                  </div>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button
+                      onClick={() => addToCart(selectedProduct, quantities[selectedProduct._id] || 1)}
+                      style={{
+                        backgroundColor: '#28a745',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '10px 20px',
+                        borderRadius: '5px',
+                        fontSize: '16px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                    <button
+                      onClick={() =>
+                        isInWishlist(selectedProduct._id)
+                          ? removeFromWishlist(selectedProduct._id)
+                          : addToWishlist(selectedProduct)
+                      }
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        fontSize: '20px',
+                        cursor: 'pointer',
+                        color: isInWishlist(selectedProduct._id) ? 'red' : '#888'
+                      }}
+                    >
+                      {isInWishlist(selectedProduct._id) ? '❤️' : '🤍'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
