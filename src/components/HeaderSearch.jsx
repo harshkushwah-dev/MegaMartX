@@ -56,7 +56,6 @@ export const HeaderSearch = () => {
     };
   }, []);
 
-  // Base style for all buttons
   const btnBaseStyle = {
     fontSize: '12px',
     minWidth: '70px',
@@ -67,7 +66,7 @@ export const HeaderSearch = () => {
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    border: '1px solid #28a745',  // default green border
+    border: '1px solid #28a745',  
     transition: 'transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease',
     userSelect: 'none',
     color: '#333',

@@ -2,7 +2,6 @@ import React from 'react';
 import sampleProducts from '../data/sampleProducts';
 
 const ProductsWithDiscount = () => {
-  // Step 1: Filter discounted products
   const discountedProducts = sampleProducts.filter(
     (product) =>
       product.regularPrice &&
@@ -10,14 +9,13 @@ const ProductsWithDiscount = () => {
       product.salePrice < product.regularPrice
   );
 
-  // Step 2: Sort by highest discount
   const top4Discounted = discountedProducts
     .sort(
       (a, b) =>
         ((b.regularPrice - b.salePrice) / b.regularPrice) * 100 -
         ((a.regularPrice - a.salePrice) / a.regularPrice) * 100
     )
-    .slice(0, 4); // Step 3: Take only top 4
+    .slice(0, 4); 
 
   return (
     <div className="container py-5">

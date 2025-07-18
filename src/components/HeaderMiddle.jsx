@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from 'lucide-react'; // make sure this is installed or replace with an icon you use
+import { Menu } from 'lucide-react'; 
 
 export const HeaderMiddle = () => {
   const [isMobile, setIsMobile] = useState(false);

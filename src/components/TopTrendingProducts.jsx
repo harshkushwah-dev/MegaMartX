@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import sampleProducts from '../data/sampleProducts'; // Ensure this is a default export
+import sampleProducts from '../data/sampleProducts';
 
 const TopTrendingProducts = () => {
-  // Show only one product per category
   const uniqueCategoryProducts = Object.values(
     sampleProducts.reduce((acc, product) => {
       if (!acc[product.category]) acc[product.category] = product;
@@ -40,7 +39,6 @@ const TopTrendingProducts = () => {
     return categoryMatch && priceMatch;
   });
 
-  // Limit display to 2 rows (3 items per row = 6 max)
   const itemsToShow = filteredProducts.slice(0, 6);
 
   const handleAddToCart = (product) => {

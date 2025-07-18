@@ -29,7 +29,6 @@ export const WishlistProvider = ({ children }) => {
   );
 };
 
-// ✅ Make sure this exists!
 export const useWishlist = () => {
   const context = useContext(WishlistContext);
   if (!context) {

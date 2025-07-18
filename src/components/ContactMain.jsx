@@ -187,7 +187,6 @@ const ContactMain = () => {
         </div>
       </div>
 
-      {/* Animations CSS */}
       <style>{`
         @keyframes fadeInUp {
           0% {
@@ -215,7 +214,6 @@ const ContactMain = () => {
   );
 };
 
-// Styles for input fields
 const inputStyle = {
   padding: '12px 16px',
   border: '1px solid #ccc',

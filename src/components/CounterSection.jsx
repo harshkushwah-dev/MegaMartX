@@ -1,4 +1,4 @@
-// src/components/CounterSection.jsx
+
 import React from 'react';
 import CountUp from 'react-countup';
 
@@ -12,7 +12,7 @@ const counterData = [
 const CounterSection = () => {
   return (
     <div className="rts-counter-area py-5" >
-      <div className="container"> {/* use standard 'container' */}
+      <div className="container"> 
         <div className="row">
           <div className="col-lg-12">
             <div className="counter-area-main-wrapper d-flex flex-wrap justify-content-between text-white">

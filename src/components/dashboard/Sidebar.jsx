@@ -105,7 +105,7 @@ const Sidebar = () => {
             >
               <li>
                 <Link
-                  to="/dashboard/order"
+                  to="#"
                   style={{
                     ...styles.submenuLink,
                     ...(isActive("/dashboard/order") ? styles.activeSubmenuLink : {}),
@@ -116,7 +116,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/order-details"
+                  to="#"
                   style={{
                     ...styles.submenuLink,
                     ...(isActive("/dashboard/order-details") ? styles.activeSubmenuLink : {}),
@@ -131,7 +131,7 @@ const Sidebar = () => {
           {/* Add Product */}
           <li>
             <Link
-              to="/dashboard/add-product"
+              to="#"
               style={styles.addProductLink}
               onMouseEnter={(e) => (e.currentTarget.style.background = "#4b5563")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "#374151")}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import sampleProducts from '../data/sampleProducts'; // Make sure this has category field in each product
+import sampleProducts from '../data/sampleProducts'; 
 
 const WeeklyBestSellingGroceries = () => {
   const categories = ['All', 'Beverages', 'Grocery & Staples', 'Breakfast & Dairy', 'Snacks'];
@@ -17,7 +17,7 @@ const WeeklyBestSellingGroceries = () => {
 
   const filteredProducts = sampleProducts
     .filter(p => activeCategory === 'All' || p.category === activeCategory)
-    .slice(0, 8); // Limit to 8 products (2 rows)
+    .slice(0, 8); 
 
   return (
     <div className="rts-section-gap bg_light-1" style={{ padding: '40px 15px' }}>

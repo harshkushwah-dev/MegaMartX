@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Sample vendors (15 shown here; you can extend up to 25 as needed)
 const vendorsData = [
     {
         id: 1,
@@ -317,7 +316,6 @@ const VendorList = () => {
                 </div>
             </div>
 
-            {/* Extra Hover & Mobile Style */}
             <style jsx>{`
                 .vendor-hover {
                     transition: all 0.3s ease;

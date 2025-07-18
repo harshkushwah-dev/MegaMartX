@@ -83,7 +83,6 @@ const AccountPage = () => {
               Welcome back! Here’s your personal dashboard to track orders, manage account, and more.
             </p>
 
-            {/* Summary Cards */}
             <div className="dashboard-cards" style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -125,7 +124,6 @@ const AccountPage = () => {
               ))}
             </div>
 
-            {/* Tip Box */}
             <div style={{
               marginTop: "35px",
               padding: "20px 25px",
@@ -140,7 +138,6 @@ const AccountPage = () => {
               💡 <strong>Tip:</strong> You can track your latest order status directly in the "Track Your Order" tab. Stay updated in real-time!
             </div>
 
-            {/* Rewards and Loyalty */}
             <div style={{
               marginTop: "35px",
               padding: "25px",
@@ -176,7 +173,6 @@ const AccountPage = () => {
               </button>
             </div>
 
-            {/* Quick Links */}
             <div style={{ marginTop: "40px", animation: "fadeSlide 1s ease-in-out" }}>
               <h3 style={{ fontSize: "20px", marginBottom: "15px", color: "#222" }}>🔗 Quick Links</h3>
               <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -214,7 +210,6 @@ const AccountPage = () => {
               </div>
             </div>
 
-            {/* Support Info */}
             <div style={{
               marginTop: "50px",
               padding: "20px",
@@ -228,7 +223,6 @@ const AccountPage = () => {
               Need help? Contact our support team at <strong>+91 98860 21458</strong> or email <strong>bangalore@megamartx.com</strong>
             </div>
 
-            {/* Animation keyframes */}
             <style>{`
         @keyframes fadeSlide {
           from {
@@ -312,7 +306,6 @@ const AccountPage = () => {
               </table>
             </div>
 
-            {/* Animation Keyframes */}
             <style>{`
         @keyframes fadeInSlide {
           from {
@@ -329,7 +322,7 @@ const AccountPage = () => {
         );
 
       case "Track Your Order":
-        const currentStepIndex = 4; // Example: 0-based index (4 = "Out for Delivery")
+        const currentStepIndex = 4;
 
         const trackSteps = [
           "Order Placed",
@@ -362,7 +355,6 @@ const AccountPage = () => {
                 ))}
               </div>
 
-              {/* Timeline Styles */}
               <style>{`
           .timeline-wrapper {
             position: relative;
@@ -581,13 +573,12 @@ const AccountPage = () => {
         );
 
       case "Log Out":
-        // Simulate logout: clear auth (e.g. localStorage) and reload or redirect
+     
         setTimeout(() => {
-          localStorage.clear(); // clear user data if stored
+          localStorage.clear(); 
           sessionStorage.clear();
-          window.location.href = "/"; // redirect to homepage or login
-        }, 1500); // slight delay for animation
-
+          window.location.href = "/"; 
+        }, 1500); 
         return (
           <>
             <div className="logout-message">

@@ -44,7 +44,6 @@ const AddProduct = () => {
       console.log("✅ Product added:", res.data);
       alert("Product Added Successfully");
 
-      // Reset form
       setProduct({
         name: "",
         regularPrice: "",
@@ -122,7 +121,6 @@ const AddProduct = () => {
   );
 };
 
-// ✨ Inline styles with animations
 const styles = {
   container: {
     display: "flex",
@@ -175,7 +173,6 @@ const styles = {
   },
 };
 
-// Keyframe animations
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
 @keyframes fadeIn {

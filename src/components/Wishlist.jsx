@@ -1,9 +1,8 @@
-// src/components/Wishlist.jsx
+
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Wishlist = () => {
-  // Fake wishlist data
   const [wishlistItems, setWishlistItems] = React.useState([
     {
       _id: '1',

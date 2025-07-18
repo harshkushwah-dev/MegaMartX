@@ -21,7 +21,7 @@ const features = [
     title: "Easy Returns",
     subtitle: "Within 7 days",
   },
-  // 👉 Duplicate this object block for more features
+
 ];
 
 const FeatureArea = () => {

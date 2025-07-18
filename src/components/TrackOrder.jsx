@@ -5,7 +5,7 @@ const steps = ['Order Placed', 'Shipped', 'Out for Delivery', 'Delivered'];
 
 const TrackOrder = () => {
   const [trackingId, setTrackingId] = useState('');
-  const [statusIndex, setStatusIndex] = useState(2); // simulate order status
+  const [statusIndex, setStatusIndex] = useState(2); 
 
   const handleTrack = () => {
     if (!trackingId.trim()) {

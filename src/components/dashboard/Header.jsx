@@ -4,16 +4,14 @@ import { FiBell, FiUser, FiLogOut } from 'react-icons/fi';
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const navigate = useNavigate(); // for redirecting
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Optional: clear user data from localStorage/session
     localStorage.removeItem("authToken");
     sessionStorage.clear();
 
     alert("Logged out successfully!");
 
-    // Redirect to login
     navigate('/login');
   };
 
